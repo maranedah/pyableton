@@ -1,19 +1,17 @@
-from LiveSet import LiveSet
 import xml.etree.ElementTree as ET
+
+from LiveSet import LiveSet
+
 
 class Ableton:
     major_version: int
-    minor_version: str 
-    schema_change_count: int 
+    minor_version: str
+    schema_change_count: int
     creator: str
     revision: str
     live_set: LiveSet
 
-    
-    def __init__(
-        self, 
-        xml_file: str
-    ):
+    def __init__(self, xml_file: str):
         tree = ET.parse(xml_file)
         root = tree.getroot()
         self.major_version = int(root.attrib["MajorVersion"])

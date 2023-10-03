@@ -1,0 +1,14 @@
+[tool.black]
+line-length = 100
+
+[tool.ruff]
+line-length = 100
+select = [
+	"E", # pycodestyle
+	"F", # pyflakes
+	"I", # isort
+	"B", #flake8-bugbear
+]
+fixable = [
+	"I", # for safety reasons we will only fix isort, and lint the other rules
+]
