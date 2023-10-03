@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Ableton MajorVersion="5" MinorVersion="11.0_11300" SchemaChangeCount="3" Creator="Ableton Live 11.3.3" Revision="d46a6d1068bab7b392804ef645e6a9bbc2eb0b27">
+	<LiveSet>
+		<NextPointeeId Value="27102" />
+		<OverwriteProtectionNumber Value="2819" />
+		<LomId Value="3" />
+		<LomIdView Value="0" />
+		<Tracks>
+			<MidiTrack Id="12">
+            </MidiTrack>
+            <MidiTrack Id="13">
+            </MidiTrack>
+        </Tracks>
+	</LiveSet>
+</Ableton>
