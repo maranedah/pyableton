@@ -123,16 +123,26 @@ class LiveSet:
         self.auto_quantisation: AutoQuantisation
         self.grid: Grid
         self.scale_information: ScaleInformation
-        self.in_key: bool
-        self.smpte_format: int
+        """
+        self.in_key = bool(root.find("InKey").attrib["Value"])
+        self.smpte_format = int(root.find("SmpteFormat").attrib["Value"])
+        """
         self.time_selection: TimeSelection
         self.sequencer_navigator: SequencerNavigator
-        self.is_content_splitter_open: bool
-        self.is_expression_splitter_open: bool
+        """
+        self.is_content_splitter_open = bool(root.find("IsContentSplitterOpen").attrib["Value"])
+        self.is_expression_splitter_open = bool(
+            root.find("IsExpressionSplitterOpen").attrib["Value"]
+        )
+        """
         self.expression_lanes: List[ExpressionLane]
         self.content_lanes: List[ContentLane]
-        self.view_state_fx_slot_count: int
-        self.view_state_session_mixer_height: int
+        """
+        self.view_state_fx_slot_count = int(root.find("ViewStateFxSlotCount").attrib["Value"])
+        self.view_state_session_mixer_height = int(
+            root.find("ViewStateSessionMixerHeight").attrib["Value"]
+        )
+        """
         self.locators: List[Locator]
         self.detail_clipkey_midis: List[DetailClipKeyMidi]
         self.tracks_list_wrapper: TracksListWrapper
@@ -140,36 +150,48 @@ class LiveSet:
         self.return_tracks_list_wrapper: ReturnTracksListWrapper
         self.scenes_list_wrapper: ScenesListWrapper
         self.cue_points_list_wrapper: CuePointsListWrapper
-        self.chooser_bar: int
-        self.annotation: str
-        self.solo_or_pfl_saved_value: bool
-        self.solo_in_place: bool
-        self.crossfade_curve: int
-        self.latency_compensation: int
-        self.highlighted_track_index: int
+        """
+        self.chooser_bar = int(root.find("ChooserBar").attrib["Value"])
+        self.annotation = root.find("Annotation").attrib["Value"]
+        self.solo_or_pfl_saved_value = bool(root.find("SoloOrPflSavedValue").attrib["Value"])
+        self.solo_in_place = bool(root.find("SoloInPlace").attrib["Value"])
+        self.crossfade_curve = int(root.find("CrossfadeCurve").attrib["Value"])
+        self.latency_compensation = int(root.find("LatencyCompensation").attrib["Value"])
+        self.highlighted_track_index = int(root.find("HighlightedTrackIndex").attrib["Value"])
+        """
         self.groove_pool: GroovePool
-        self.automation_mode: bool
-        self.snap_automation_to_grid: bool
-        self.arrangement_overdub: bool
-        self.color_sequence_index: int
+        """
+        self.automation_mode = bool(root.find("AutomationMode").attrib["Value"])
+        self.snap_automation_to_grid = bool(root.find("SnapAutomationToGrid").attrib["Value"])
+        self.arrangement_overdub = bool(root.find("ArrangementOverdub").attrib["Value"])
+        self.color_sequence_index = int(root.find("ColorSequenceIndex").attrib["Value"])
+        """
         self.auto_color_picker_for_player_and_group_tracks: AutoColorPickerForPlayerAndGroupTracks
         self.auto_color_picker_for_return_and_master_tracks: AutoColorPickerForReturnAndMasterTracks
         self.view_data: dict
-        self.reset_nonautomated_midi_controllers_on_clip_starts: bool
-        self.midi_fold_in: bool
-        self.midi_fold_mode: bool
-        self.multi_clip_focus_mode: bool
-        self.multi_clip_loop_bar_height: int
-        self.midi_prelisten: bool
+        """
+        self.reset_nonautomated_midi_controllers_on_clip_starts = bool(
+            root.find("ResetNonautomatedMidiControllersOnClipStarts").attrib["Value"]
+        )
+        self.midi_fold_in = bool(root.find("MidiFoldIn").attrib["Value"])
+        self.midi_fold_mode = bool(root.find("MidiFoldMode").attrib["Value"])
+        self.multi_clip_focus_mode = bool(root.find("MultiClipFocusMode").attrib["Value"])
+        self.multi_clip_loop_bar_height = int(root.find("MultiClipLoopBarHeight").attrib["Value"])
+        self.midi_prelisten = bool(root.find("MidiPrelisten").attrib["Value"])
+        """
         self.linked_track_groups: LinkedTrackGroups
+        """
         self.accidental_spelling_preference: int
         self.prefer_flat_root_note: bool
         self.use_warper_legacy_hi_q_mode: bool
+        """
         self.video_window_rect: VideoWindowRect
+        """
         self.show_video_window: bool
         self.track_header_width: int
         self.view_state_arranger_has_detail: bool
         self.view_state_session_has_detail: bool
         self.view_state_detail_is_sample: bool
+        """
         self.view_states: ViewStates
         """
