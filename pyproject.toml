@@ -1,3 +1,28 @@
+[build-system]
+requires = ["setuptools>=67.0", "setuptools_scm[toml]>=7.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyableton"
+version = "0.0.1"
+authors = []
+description = "A small example package"
+readme = "README.md"
+requires-python = ">=3.10"
+dynamic = ["dependencies"]
+classifiers = [
+	"Programming Language :: Python :: 3",
+	"License :: OSI Approved :: MIT License",
+	"Operating System :: OS Independent",
+]
+
+[tool.setuptools.dynamic.optional-dependencies]
+dev = {file = ["requirements-dev.txt"]}
+
+[project.urls]
+"Homepage" = "https://github.com/pypa/samplesproject"
+"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
+
 [tool.black]
 line-length = 100
 

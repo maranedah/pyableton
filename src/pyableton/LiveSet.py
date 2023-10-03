@@ -1,39 +1,39 @@
 from typing import List
 from xml.etree import ElementTree
 
-from AutoColorPickerForPlayerAndGroupTracks import (
+from .AutoColorPickerForPlayerAndGroupTracks import (
     AutoColorPickerForPlayerAndGroupTracks,
 )
-from AutoColorPickerForReturnAndMasterTracks import (
+from .AutoColorPickerForReturnAndMasterTracks import (
     AutoColorPickerForReturnAndMasterTracks,
 )
-from AutoQuantisation import AutoQuantisation
-from ContentLane import ContentLane
-from CuePointsListWrapper import CuePointsListWrapper
-from DetailClipKeyMidi import DetailClipKeyMidi
-from ExpressionLane import ExpressionLane
-from GlobalQuantisation import GlobalQuantisation
-from Grid import Grid
-from GroovePool import GroovePool
-from LinkedTrackGroups import LinkedTrackGroups
-from Locator import Locator
-from MasterTrack import MasterTrack
-from MidiTrack import MidiTrack
-from PreHearTrack import PreHearTrack
-from ReturnTracksListWrapper import ReturnTracksListWrapper
-from ScaleInformation import ScaleInformation
-from Scene import Scene
-from ScenesListWrapper import ScenesListWrapper
-from SendsPre import SendsPre
-from SequencerNavigator import SequencerNavigator
-from SignalModulations import SignalModulations
-from SongMasterValues import SongMasterValues
-from TimeSelection import TimeSelection
-from TracksListWrapper import TracksListWrapper
-from Transport import Transport
-from VideoWindowRect import VideoWindowRect
-from ViewStates import ViewStates
-from VisibleTracksListWrapper import VisibleTracksListWrapper
+from .AutoQuantisation import AutoQuantisation
+from .ContentLane import ContentLane
+from .CuePointsListWrapper import CuePointsListWrapper
+from .DetailClipKeyMidi import DetailClipKeyMidi
+from .ExpressionLane import ExpressionLane
+from .GlobalQuantisation import GlobalQuantisation
+from .Grid import Grid
+from .GroovePool import GroovePool
+from .LinkedTrackGroups import LinkedTrackGroups
+from .Locator import Locator
+from .MasterTrack import MasterTrack
+from .MidiTrack import MidiTrack
+from .PreHearTrack import PreHearTrack
+from .ReturnTracksListWrapper import ReturnTracksListWrapper
+from .ScaleInformation import ScaleInformation
+from .Scene import Scene
+from .ScenesListWrapper import ScenesListWrapper
+from .SendsPre import SendsPre
+from .SequencerNavigator import SequencerNavigator
+from .SignalModulations import SignalModulations
+from .SongMasterValues import SongMasterValues
+from .TimeSelection import TimeSelection
+from .TracksListWrapper import TracksListWrapper
+from .Transport import Transport
+from .VideoWindowRect import VideoWindowRect
+from .ViewStates import ViewStates
+from .VisibleTracksListWrapper import VisibleTracksListWrapper
 
 
 class LiveSet:
@@ -104,7 +104,6 @@ class LiveSet:
     view_states: ViewStates
 
     def __init__(self, root: ElementTree.Element):
-        # breakpoint()  # noqa
         self.next_pointee_id = int(root.find("NextPointeeId").attrib["Value"])
         self.overwrite_protection_number = int(
             root.find("OverwriteProtectionNumber").attrib["Value"]

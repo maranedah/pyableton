@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 
-from LiveSet import LiveSet
+from .LiveSet import LiveSet
 
 
 class Ableton:
@@ -20,6 +20,3 @@ class Ableton:
         self.creator = root.attrib["Creator"]
         self.revision = root.attrib["Revision"]
         self.live_set = LiveSet(root.find("LiveSet"))
-
-
-Ableton("evasiva.xml")
