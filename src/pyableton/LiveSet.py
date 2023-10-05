@@ -110,8 +110,10 @@ class LiveSet:
         )
         self.lom_id = int(root.find("LomId").attrib["Value"])
         self.lom_id_view = int(root.find("LomIdView").attrib["Value"])
+        self.tracks = [
+            MidiTrack(x) for x in root.find("Tracks").findall("./") if x.tag == "MidiTrack"
+        ]
         """
-        self.tracks: List[MidiTrack]
         self.master_track: MasterTrack
         self.pre_hear_track: PreHearTrack
         self.sends_pre: SendsPre
@@ -192,6 +194,4 @@ class LiveSet:
         self.view_state_arranger_has_detail: bool
         self.view_state_session_has_detail: bool
         self.view_state_detail_is_sample: bool
-        """
-        self.view_states: ViewStates
-        """
+        self.view_states: ViewStates(root.find("ViewStates"))
