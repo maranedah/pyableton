@@ -17,9 +17,6 @@ from .Grid import Grid
 from .GroovePool import GroovePool
 from .LinkedTrackGroups import LinkedTrackGroups
 from .Locator import Locator
-from .MasterTrack import MasterTrack
-from .MidiTrack import MidiTrack
-from .PreHearTrack import PreHearTrack
 from .ReturnTracksListWrapper import ReturnTracksListWrapper
 from .ScaleInformation import ScaleInformation
 from .Scene import Scene
@@ -29,6 +26,7 @@ from .SequencerNavigator import SequencerNavigator
 from .SignalModulations import SignalModulations
 from .SongMasterValues import SongMasterValues
 from .TimeSelection import TimeSelection
+from .track import MasterTrack, MidiTrack, PreHearTrack
 from .TracksListWrapper import TracksListWrapper
 from .Transport import Transport
 from .VideoWindowRect import VideoWindowRect
