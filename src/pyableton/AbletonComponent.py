@@ -1,27 +1,56 @@
+import json
 from xml.etree import ElementTree
 
 
 class AbletonComponent:
     def __init__(self, root: ElementTree.Element):
-        for param_name, param_type in self.__annotations__.items():
-            # breakpoint()
-            name_in_xml = self.snake_to_camel(param_name)
-            node = root.find(name_in_xml)
-            if issubclass(param_type, AbletonComponent):
-                element_value = node
-            elif node is not None:  # node exists
-                if "Value" in node.attrib:
-                    element_value = node.attrib["Value"]
-                elif "LomId" in node.attrib:
-                    element_value = node.attrib["LomId"]
-                # else: raise error?
-            elif name_in_xml in root.attrib:  # exists as an attribute
-                element_value = root.attrib[name_in_xml]
+        for annotation_param_name, annotation_param_type in self.__annotations__.items():
+            initialized_value = self.init_python_object_from_annotation(
+                root, annotation_param_name, annotation_param_type
+            )
+            setattr(self, annotation_param_name, initialized_value)
 
-            # if param_type._name == "List":
-            # else:
-            casted_value = param_type(element_value)
-            setattr(self, param_name, casted_value)
+    def init_python_object_from_annotation(
+        self, root: ElementTree.Element, annotation_param_name: str, annotation_param_type
+    ):
+        param_name = self.snake_to_camel(annotation_param_name)
+
+        # we look in the node attributes first
+        if param_name in root.attrib:
+            return annotation_param_type(root.attrib[param_name])
+
+        # we look in the nodes' children
+
+        node = root.find(param_name)
+
+        is_native_type = annotation_param_type in [int, bool, str]
+        is_dict = annotation_param_type == dict
+        is_list_type = hasattr(annotation_param_type, "__origin__") and issubclass(
+            annotation_param_type.__origin__, list
+        )
+        is_ableton_component = issubclass(annotation_param_type, AbletonComponent)
+
+        if is_native_type:
+            new_param_value = list(node.attrib.values())[0]
+
+        elif is_dict:
+            new_param_value = json.loads(list(node.attrib.values())[0])
+
+        elif is_list_type:
+            ableton_component = annotation_param_type.__args__[0]
+            new_param_value = [
+                ableton_component(node) for node in root.find(param_name).findall("./")
+            ]
+            annotation_param_type = list
+
+        elif is_ableton_component:
+            new_param_value = node
+
+        else:
+            return None
+
+        initialized_value = annotation_param_type(new_param_value)  # casts to python object
+        return initialized_value
 
     def snake_to_camel(self, input_string):
         parts = input_string.split("_")

@@ -1,6 +1,8 @@
 from xml.etree import ElementTree
 
 from ..AbletonComponent import AbletonComponent
+
+# from .DeviceChain import DeviceChain
 from .Name import Name
 from .TrackDelay import TrackDelay
 
@@ -15,12 +17,12 @@ class MidiTrack(AbletonComponent):
     name: Name
     color: int
     # automation_envelopes: List[Envelope]
-    track_group: int
+    track_group_id: int
     track_unfolded: bool
     devices_list_wrapper: int
     clip_slots_list_wrapper: int
     # view_data: dict
-    # take_lanes: List[TakeLane]
+    # take_lanes: list[TakeLane]
     linked_track_group_id: int
     saved_playing_slot: int
     saved_playing_offset: int
