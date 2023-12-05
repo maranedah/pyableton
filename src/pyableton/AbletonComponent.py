@@ -23,7 +23,8 @@ class AbletonComponent:
 
         node = root.find(param_name)
 
-        is_native_type = annotation_param_type in [int, bool, str]
+        is_native_type = annotation_param_type in [int, str]
+        is_bool = annotation_param_type == bool
         is_dict = annotation_param_type == dict
         is_list_type = hasattr(annotation_param_type, "__origin__") and issubclass(
             annotation_param_type.__origin__, list
@@ -32,6 +33,9 @@ class AbletonComponent:
 
         if is_native_type:
             new_param_value = list(node.attrib.values())[0]
+
+        elif is_bool:
+            new_param_value = list(node.attrib.values())[0] == "true"
 
         elif is_dict:
             new_param_value = json.loads(list(node.attrib.values())[0])
@@ -54,5 +58,7 @@ class AbletonComponent:
 
     def snake_to_camel(self, input_string):
         parts = input_string.split("_")
-        camel_case = "".join([part.capitalize() for part in parts])
+        camel_case = "".join(
+            [part.capitalize() if part.upper() != part else part for part in parts]
+        )
         return camel_case

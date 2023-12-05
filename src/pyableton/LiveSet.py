@@ -18,7 +18,7 @@ from .Locator import Locator
 from .Quantisation import AutoQuantisation, GlobalQuantisation
 from .ScaleInformation import ScaleInformation
 from .Scene import Scene, ScenesListWrapper
-from .SendsPre import SendsPre
+from .SendPreBool import SendPreBool
 from .SequencerNavigator import SequencerNavigator
 from .SignalModulations import SignalModulations
 from .SongMasterValues import SongMasterValues
@@ -44,7 +44,7 @@ class LiveSet(AbletonComponent):
     tracks: list[Track]
     master_track: MasterTrack
     pre_hear_track: PreHearTrack
-    sends_pre: SendsPre
+    sends_pre: list[SendPreBool]
     scenes: list[Scene]
     transport: Transport
     song_master_values: SongMasterValues

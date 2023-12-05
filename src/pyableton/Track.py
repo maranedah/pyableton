@@ -1,6 +1,7 @@
 from xml.etree import ElementTree
 
 from .AbletonComponent import AbletonComponent
+from .Midi import DeviceChain, MidiName
 
 # from .DeviceChain import DeviceChain
 # from .Name import Name
@@ -20,7 +21,15 @@ class Track(AbletonComponent):
             return super().__new__(cls)
 
     def __init__(self, root):
-        self.root = root
+        super().__init__(root)
+
+
+class TrackDelay(AbletonComponent):
+    value: int
+    is_value_sample_based: bool
+
+    def __init__(self, root: ElementTree.Element):
+        super().__init__(root)
 
 
 class MidiTrack(Track):
@@ -29,15 +38,15 @@ class MidiTrack(Track):
     lom_id_view: int
     is_content_selected_in_document: bool
     preferred_content_view_mode: int
-    # track_delay: TrackDelay
-    # name: Name
+    track_delay: TrackDelay
+    name: MidiName
     color: int
     # automation_envelopes: List[Envelope]
     track_group_id: int
     track_unfolded: bool
     devices_list_wrapper: int
     clip_slots_list_wrapper: int
-    # view_data: dict
+    view_data: dict
     # take_lanes: list[TakeLane]
     linked_track_group_id: int
     saved_playing_slot: int
@@ -46,7 +55,7 @@ class MidiTrack(Track):
     velocity_detail: int
     need_arranger_refreeze: bool
     post_process_freeze_clips: int
-    # device_chain: DeviceChain
+    device_chain: DeviceChain
     re_wire_slave_midi_target_id: int
     pitchbend_range: int
 
@@ -68,7 +77,7 @@ class ReturnTrack(Track):
     track_unfolded: bool
     devices_list_wrapper: int
     clip_slots_list_wrapper: int
-    # view_data: dict
+    view_data: dict
     # take_lanes: list[TakeLane]
     linked_track_group_id: int
     # device_chain: DeviceChain
