@@ -94,6 +94,23 @@ class VisibleTracksListWrapper(AbletonComponent):
 
 
 class MasterTrack(AbletonComponent):
+    lom_id: int
+    lom_id_view: int
+    is_content_selected_in_document: bool
+    preferred_content_view_mode: int
+    track_delay: TrackDelay
+    name: MidiName
+    color: int
+    # automation_envelopes:
+    track_group_id: int
+    track_unfolded: bool
+    # devices_list_wrapper: lom_id
+    # clip_slots_list_wrapper
+    view_data: dict
+    # take_lanes:
+    linked_track_group_id: int
+    device_chain: DeviceChain
+
     def __init__(self, root: ElementTree.Element):
         return None
 

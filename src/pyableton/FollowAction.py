@@ -1,5 +1,3 @@
-from xml.etree import ElementTree
-
 from .AbletonComponent import AbletonComponent
 
 
@@ -14,6 +12,3 @@ class FollowAction(AbletonComponent):
     jump_index_a: int
     jump_index_b: int
     follow_action_enabled: bool
-
-    def __init__(self, root: ElementTree.Element):
-        super().__init__(root)

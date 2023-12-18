@@ -1,7 +1,56 @@
-from xml.etree import ElementTree
+import muspy
 
 from .AbletonComponent import AbletonComponent
 from .ViewStates import AutomationTransformViewState
+
+
+class MidiNoteEvent(AbletonComponent):
+    time: float
+    duration: float
+    velocity: int
+    velocity_deviation: int
+    off_velocity: int
+    probability: float
+    is_enabled: bool
+    note_id: int
+
+    def __str__(self):
+        return f"MidiNoteEvent(time={self.time}, \
+            duration={self.duration}, velocity={self.velocity})"
+
+
+class KeyTrack(AbletonComponent):
+    id: int
+    notes: list[MidiNoteEvent]
+    midi_key: int
+
+    def get_notes(self):
+        return [
+            muspy.Note(
+                time=int(note.time * 24),
+                pitch=self.midi_key,
+                duration=int(note.duration * 24),
+                velocity=note.velocity,
+            )
+            for note in self.notes
+        ]
+
+
+class Notes(AbletonComponent):
+    key_tracks: list[KeyTrack]
+
+    def get_notes(self):
+        notes = [note for key_track in self.key_tracks for note in key_track.get_notes()]
+        notes.sort(key=lambda x: (x.time, x.pitch, x.duration))
+        return notes
+
+    def to_pandas(self):
+        import pandas as pd
+
+        notes = [vars(note) for key_track in self.key_tracks for note in key_track.get_notes()]
+        df = pd.DataFrame(notes).sort_values(by=["time", "pitch", "duration"])
+        df = df.reset_index(drop=True)
+        return df
 
 
 class MidiClip(AbletonComponent):
@@ -32,7 +81,7 @@ class MidiClip(AbletonComponent):
     freeze_end: int
     is_warped: bool
     take_id: int
-    # notes: Content
+    notes: Notes
     bank_select_coarse: int
     bank_select_fine: int
     program_change: int
@@ -48,20 +97,11 @@ class MidiClip(AbletonComponent):
     prefer_flat_root_note: bool
     # expression_grid: ExpressionGrid
 
-    def __init__(self, root: ElementTree.Element):
-        super().__init__(root)
-
 
 class ArrangerAutomation(AbletonComponent):
     events: list[MidiClip]
     automation_transform_view_state: AutomationTransformViewState
 
-    def __init__(self, root: ElementTree.Element):
-        super().__init__(root)
-
 
 class ClipTimeable(AbletonComponent):
     arranger_automation: ArrangerAutomation
-
-    def __init__(self, root: ElementTree.Element):
-        super().__init__(root)

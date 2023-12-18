@@ -19,6 +19,7 @@ class TestAbleton(unittest.TestCase):
         self.midi_track = self.ableton.live_set.tracks[0]
         self.device_chain = self.ableton.live_set.tracks[0].device_chain
         self.main_sequencer = self.ableton.live_set.tracks[0].device_chain.main_sequencer
+        self.events = self.main_sequencer.clip_timeable.arranger_automation.events
 
     def test_ableton_object(self):
         assert self.ableton.major_version == 5
@@ -101,6 +102,17 @@ class TestAbleton(unittest.TestCase):
         assert isinstance(self.main_sequencer.clip_timeable, ClipTimeable)
         # assert self.main_sequencer.recorder
         # assert self.main_sequencer.midi_controllers
+
+    def test_events(self):
+        assert self.events[0] is not None
+
+    def test_notes(self):
+        assert self.events[0].notes.get_notes() is not None
+        assert self.events[0].notes.to_pandas() is not None
+
+    def test_get_notes(self):
+        assert self.ableton.get_notes() is not None
+        self.ableton.get_notes().write_midi("test.midi")
 
     def test_to_als(self):
         return None

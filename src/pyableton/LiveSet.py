@@ -1,28 +1,11 @@
-from xml.etree import ElementTree
-
 from .AbletonComponent import AbletonComponent
-from .AutoColorPickerForPlayerAndGroupTracks import (
-    AutoColorPickerForPlayerAndGroupTracks,
-)
-from .AutoColorPickerForReturnAndMasterTracks import (
-    AutoColorPickerForReturnAndMasterTracks,
-)
-from .ContentLane import ContentLane
-from .CuePointsListWrapper import CuePointsListWrapper
 from .DetailClipKeyMidi import DetailClipKeyMidi
-from .ExpressionLane import ExpressionLane
 from .Grid import Grid
-from .GroovePool import GroovePool
 from .LinkedTrackGroups import LinkedTrackGroups
 from .Locator import Locator
-from .Quantisation import AutoQuantisation, GlobalQuantisation
-from .ScaleInformation import ScaleInformation
 from .Scene import Scene, ScenesListWrapper
-from .SendPreBool import SendPreBool
 from .SequencerNavigator import SequencerNavigator
 from .SignalModulations import SignalModulations
-from .SongMasterValues import SongMasterValues
-from .TimeSelection import TimeSelection
 from .Track import (
     MasterTrack,
     PreHearTrack,
@@ -34,6 +17,50 @@ from .Track import (
 from .Transport import Transport
 from .VideoWindowRect import VideoWindowRect
 from .ViewStates import ViewStates
+
+
+class AutoColorPickerForPlayerAndGroupTracks(AbletonComponent):
+    next_color_index: int
+
+
+class AutoColorPickerForReturnAndMasterTracks(AbletonComponent):
+    next_color_index: int
+
+
+class ExpressionLane(AbletonComponent):
+    id: int
+    type: int
+    size: int
+    is_minimized: bool
+
+
+class GroovePool(AbletonComponent):
+    lom_id: int
+    # Grooves: list[None]
+
+
+class ScaleInformation(AbletonComponent):
+    root_note: int
+    name: str
+
+
+class SendPreBool(AbletonComponent):
+    id: int
+    value: bool
+
+
+class SessionScrollerPos(AbletonComponent):
+    x: int
+    y: int
+
+
+class SongMasterValues(AbletonComponent):
+    session_scroller_pos: SessionScrollerPos
+
+
+class TimeSelection(AbletonComponent):
+    anchor_time: int
+    other_time: int
 
 
 class LiveSet(AbletonComponent):
@@ -49,8 +76,8 @@ class LiveSet(AbletonComponent):
     transport: Transport
     song_master_values: SongMasterValues
     signal_modulations: SignalModulations
-    global_quantisation: GlobalQuantisation
-    auto_quantisation: AutoQuantisation
+    global_quantisation: int
+    auto_quantisation: int
     grid: Grid
     scale_information: ScaleInformation
     in_key: bool
@@ -60,7 +87,7 @@ class LiveSet(AbletonComponent):
     is_content_splitter_open: bool
     is_expression_splitter_open: bool
     expression_lanes: list[ExpressionLane]
-    content_lanes: list[ContentLane]
+    content_lanes: list[ExpressionLane]
     view_state_fx_slot_count: int
     view_state_session_mixer_height: int
     locators: list[Locator]
@@ -69,7 +96,7 @@ class LiveSet(AbletonComponent):
     visible_tracks_list_wrapper: VisibleTracksListWrapper
     return_tracks_list_wrapper: ReturnTracksListWrapper
     scenes_list_wrapper: ScenesListWrapper
-    cue_points_list_wrapper: CuePointsListWrapper
+    cue_points_list_wrapper: int
     chooser_bar: int
     annotation: str
     solo_or_pfl_saved_value: bool
@@ -102,6 +129,3 @@ class LiveSet(AbletonComponent):
     view_state_session_has_detail: bool
     view_state_detail_is_sample: bool
     view_states: ViewStates
-
-    def __init__(self, root: ElementTree.Element):
-        super().__init__(root)
