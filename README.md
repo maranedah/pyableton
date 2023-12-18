@@ -1,7 +1,7 @@
 # Ableton Parser Library for Python
 
-![GitHub license](https://img.shields.io/github/license/yourusername/ableton-parser)
-![Python version](https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9-blue)
+
+![Python version](https://img.shields.io/badge/python-3.10-blue)
 
 A Python library for parsing and working with Ableton Live files (.als). This library provides functionality to extract information from Ableton Live projects, making it easier to analyze, manipulate, and interact with Ableton Live sets programmatically.
 
