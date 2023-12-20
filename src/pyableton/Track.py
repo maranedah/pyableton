@@ -93,6 +93,83 @@ class VisibleTracksListWrapper(AbletonComponent):
         return None
 
 
+class Tempo(AbletonComponent):
+    lom_id: int
+    manual: int
+    # midi_controller_range
+    # automation_target
+    # modulation_target
+
+
+class MasterTrackMixer(AbletonComponent):
+    lom_id: int
+    lom_id_view: int
+    is_expanded: bool
+    # on:
+    modulation_source_count: int
+    parameters_list_wrapper: int
+    pointee: int
+    last_selected_timeable_index: int
+    last_selected_clip_envelope_index: int
+    # last_preset_ref
+    # locked_scripts
+    is_folded: bool
+    should_show_preset_name: bool
+    user_name: str
+    annotation: str
+    # source_context
+    # sends:
+    # speaker: Speaker
+    solo_sink: bool
+    pan_mode: int
+    # pan: Pan
+    # split_stereo_pan_l:
+    # split_stereo_pan_r:
+    # volume:
+    view_state_sesstion_track_width: int
+    # cross_fade_state
+    sends_list_wrapper: int
+    tempo: Tempo
+    # time_signature: TimeSignature
+    # global_groove_amount:
+    # cross_fade:
+    tempo_automation_view_bottom: int
+    tempo_automation_view_top: int
+
+
+class MasterTrackDeviceChain(AbletonComponent):
+    # automation_lanes: AutomationLanes
+    # clip_envelope_chooser_view_state:
+    # audio_input_routing:
+    # midi_input_routing
+    # audio_output_routing:
+    # midi_output_routing:
+    mixer: MasterTrackMixer
+    # freeze_sequencer: FreezeSequencer
+    # device_chain
+
+
+class EnumEvent(AbletonComponent):  # TimeSignatureEvent
+    id: int
+    time: int
+    value: int
+
+
+class Automation(AbletonComponent):
+    events: list[EnumEvent]
+    # automation_transform_view_state: AutomationTransformViewState
+
+
+class AutomationEnvelope(AbletonComponent):
+    id: int
+    # envelope_target:
+    automation: Automation
+
+
+class AutomationEnvelopes(AbletonComponent):
+    envelopes: list[AutomationEnvelope]
+
+
 class MasterTrack(AbletonComponent):
     lom_id: int
     lom_id_view: int
@@ -101,7 +178,7 @@ class MasterTrack(AbletonComponent):
     track_delay: TrackDelay
     name: MidiName
     color: int
-    # automation_envelopes:
+    automation_envelopes: AutomationEnvelopes
     track_group_id: int
     track_unfolded: bool
     # devices_list_wrapper: lom_id
@@ -109,10 +186,7 @@ class MasterTrack(AbletonComponent):
     view_data: dict
     # take_lanes:
     linked_track_group_id: int
-    device_chain: DeviceChain
-
-    def __init__(self, root: ElementTree.Element):
-        return None
+    device_chain: MasterTrackDeviceChain
 
 
 class PreHearTrack(AbletonComponent):
