@@ -193,7 +193,3 @@ class PreHearTrack(AbletonComponent):
     def __init__(self, root: ElementTree.Element):
         return None
 
-
-class ReturnTracksListWrapper(AbletonComponent):
-    def __init__(self, root: ElementTree.Element):
-        return None

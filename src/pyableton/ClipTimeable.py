@@ -1,8 +1,10 @@
 import muspy
 
 from .AbletonComponent import AbletonComponent
-from .ViewStates import AutomationTransformViewState
 
+
+class AutomationTransformViewState(AbletonComponent):
+    is_transform_pending: bool
 
 class MidiNoteEvent(AbletonComponent):
     time: float
@@ -40,14 +42,22 @@ class Notes(AbletonComponent):
     key_tracks: list[KeyTrack]
 
     def get_notes(self):
-        notes = [note for key_track in self.key_tracks for note in key_track.get_notes()]
+        notes = [
+            note
+            for key_track in self.key_tracks
+            for note in key_track.get_notes()
+        ]
         notes.sort(key=lambda x: (x.time, x.pitch, x.duration))
         return notes
 
     def to_pandas(self):
         import pandas as pd
 
-        notes = [vars(note) for key_track in self.key_tracks for note in key_track.get_notes()]
+        notes = [
+            vars(note)
+            for key_track in self.key_tracks
+            for note in key_track.get_notes()
+        ]
         df = pd.DataFrame(notes).sort_values(by=["time", "pitch", "duration"])
         df = df.reset_index(drop=True)
         return df

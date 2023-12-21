@@ -1,22 +1,13 @@
 from .AbletonComponent import AbletonComponent
-from .DetailClipKeyMidi import DetailClipKeyMidi
 from .Grid import Grid
-from .LinkedTrackGroups import LinkedTrackGroups
-from .Locator import Locator
 from .Scene import Scene, ScenesListWrapper
-from .SequencerNavigator import SequencerNavigator
-from .SignalModulations import SignalModulations
 from .Track import (
     MasterTrack,
     PreHearTrack,
-    ReturnTracksListWrapper,
     Track,
     TracksListWrapper,
     VisibleTracksListWrapper,
 )
-from .Transport import Transport
-from .VideoWindowRect import VideoWindowRect
-from .ViewStates import ViewStates
 
 
 class AutoColorPickerForPlayerAndGroupTracks(AbletonComponent):
@@ -38,6 +29,18 @@ class GroovePool(AbletonComponent):
     lom_id: int
     # Grooves: list[None]
 
+class Locator:
+    def __init__(self, root):
+        return None
+
+class DetailClipKeyMidi:
+    def __init__(self, root):
+        return None
+
+class LinkedTrackGroups:
+    def __init__(self, root):
+        return None
+
 
 class ScaleInformation(AbletonComponent):
     root_note: int
@@ -48,10 +51,29 @@ class SendPreBool(AbletonComponent):
     id: int
     value: bool
 
+class BeatTimeHelper(AbletonComponent):
+    current_zoom: float
+
+class ScrollerPos(AbletonComponent):
+    x: int
+    y: int
+
+class ClientSize(AbletonComponent):
+    x: int
+    y: int
+
+class SequencerNavigator(AbletonComponent):
+    beat_time_helper: BeatTimeHelper
+    scroller_pos: ScrollerPos
+    client_size: ClientSize
 
 class SessionScrollerPos(AbletonComponent):
     x: int
     y: int
+
+class SignalModulations(AbletonComponent):
+    def __init__(self, root):
+        return None
 
 
 class SongMasterValues(AbletonComponent):
@@ -62,6 +84,37 @@ class TimeSelection(AbletonComponent):
     anchor_time: int
     other_time: int
 
+class Transport(AbletonComponent):
+    phase_nudge_tempo: int
+    loop_on: bool
+    loop_start: int
+    loop_length: int
+    loop_is_song_start: bool
+    current_time: int
+    punch_in: bool
+    punch_out: bool
+    metronome_tick_duration: int
+    draw_mode: bool
+
+class VideoWindowRect(AbletonComponent):
+    top: int
+    left: int
+    bottom: int
+    right: int
+
+class ViewStates(AbletonComponent):
+    session_IO: int
+    session_sends: int
+    session_returns: int
+    session_mixer: int
+    session_track_delay: int
+    session_cross_fade: int
+    session_show_over_view: int
+    arranger_IO: int
+    arranger_returns: int
+    arranger_mixer: int
+    arranger_track_delay: int
+    arranger_show_over_view: int
 
 class LiveSet(AbletonComponent):
     next_pointee_id: int
@@ -94,7 +147,7 @@ class LiveSet(AbletonComponent):
     detail_clip_key_midis: list[DetailClipKeyMidi]
     tracks_list_wrapper: TracksListWrapper
     visible_tracks_list_wrapper: VisibleTracksListWrapper
-    return_tracks_list_wrapper: ReturnTracksListWrapper
+    return_tracks_list_wrapper: int
     scenes_list_wrapper: ScenesListWrapper
     cue_points_list_wrapper: int
     chooser_bar: int
