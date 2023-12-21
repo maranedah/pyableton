@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 import muspy
 
 from .AbletonComponent import AbletonComponent
-from .constants import RESOLUTION, TIME_SIGNATURE_IDS
+from .constants import TIME_SIGNATURE_IDS
 from .LiveSet import LiveSet
 from .Track import MidiTrack
 
@@ -67,7 +67,7 @@ class Ableton(AbletonComponent):
             resolution=muspy.DEFAULT_RESOLUTION,
             tempos=[
                 muspy.Tempo(
-                    time=0 * RESOLUTION,
+                    time=0 * muspy.DEFAULT_RESOLUTION,
                     qpm=self.live_set.master_track.device_chain.mixer.tempo.manual,
                 )
             ],
