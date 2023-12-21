@@ -36,7 +36,7 @@ jobs:
           git config --global user.name "maranedah"
           git add pyproject.toml
           git commit -m "Bump version to $new_version [skip ci]"
-          git push https://$GITHUB_ACTOR:${{ secrets.PAT }}@github.com/${{ github.repository }}.git
+          git push
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
 
