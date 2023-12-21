@@ -37,6 +37,8 @@ jobs:
           git add pyproject.toml
           git commit -m "Bump version to $new_version [skip ci]"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
 
       - name: Build and publish
         run: |
