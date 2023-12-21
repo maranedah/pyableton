@@ -3,7 +3,7 @@ name: Publish to PyPI
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   publish:
@@ -32,8 +32,8 @@ jobs:
       - name: Bump version
         run: |
           python version.py
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
+          git config --global user.email "mauricio.araneda@ug.uchile.cl"
+          git config --global user.name "maranedah"
           git add pyproject.toml
           git commit -m "Bump version to $new_version [skip ci]"
           git push
