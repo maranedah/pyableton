@@ -13,9 +13,9 @@ from pyableton.Track import MasterTrack, MidiTrack, Track, TrackDelay
 
 class TestAbleton(unittest.TestCase):
     def setUp(self):
-        test_path = pathlib.Path(__file__).parent
-        self.ableton = Ableton(test_path / "test.als")
-        self.ableton.to_xml(test_path / "test.als", test_path / "test_output.xml")
+        self.test_path = pathlib.Path(__file__).parent
+        self.ableton = Ableton(self.test_path / "test.als")
+        self.ableton.to_xml(self.test_path / "test.als", self.test_path / "test_output.xml")
         self.live_set = self.ableton.live_set
         self.midi_track = self.ableton.live_set.tracks[0]
         self.device_chain = self.ableton.live_set.tracks[0].device_chain
@@ -113,7 +113,7 @@ class TestAbleton(unittest.TestCase):
 
     def test_get_notes(self):
         assert self.ableton.get_notes() is not None
-        self.ableton.get_notes().write_midi("test.midi")
+        self.ableton.get_notes().write_midi(self.test_path / "test.midi")
 
     def test_to_als(self):
         return None
@@ -123,7 +123,3 @@ class TestAbleton(unittest.TestCase):
 
     def test_midi_tracks(self):
         assert self.ableton.live_set.tracks[0] is not None
-
-
-if __name__ == "__main__":
-    unittest.main()

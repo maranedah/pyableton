@@ -27,9 +27,9 @@ class KeyTrack(AbletonComponent):
     def get_notes(self):
         return [
             muspy.Note(
-                time=int(note.time * 24),
+                time=int(note.time * muspy.DEFAULT_RESOLUTION),
                 pitch=self.midi_key,
-                duration=int(note.duration * 24),
+                duration=int(note.duration * muspy.DEFAULT_RESOLUTION),
                 velocity=note.velocity,
             )
             for note in self.notes

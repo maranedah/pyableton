@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 import muspy
 
 from .AbletonComponent import AbletonComponent
-from .constants import TIME_SIGNATURE_IDS
+from .constants import RESOLUTION, TIME_SIGNATURE_IDS
 from .LiveSet import LiveSet
 from .Track import MidiTrack
 
@@ -66,12 +66,15 @@ class Ableton(AbletonComponent):
             metadata=muspy.Metadata(),
             resolution=muspy.DEFAULT_RESOLUTION,
             tempos=[
-                muspy.Tempo(time=0, qpm=self.live_set.master_track.device_chain.mixer.tempo.manual)
+                muspy.Tempo(
+                    time=0 * RESOLUTION,
+                    qpm=self.live_set.master_track.device_chain.mixer.tempo.manual,
+                )
             ],
             key_signatures=[],
             time_signatures=[
                 muspy.TimeSignature(
-                    time=max(0, time_signature_event.time),
+                    time=max(0, time_signature_event.time * muspy.DEFAULT_RESOLUTION),
                     numerator=TIME_SIGNATURE_IDS[time_signature_event.value]["numerator"],
                     denominator=TIME_SIGNATURE_IDS[time_signature_event.value]["denominator"],
                 )
