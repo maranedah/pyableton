@@ -15,11 +15,17 @@ class TestAbleton(unittest.TestCase):
     def setUp(self):
         self.test_path = pathlib.Path(__file__).parent
         self.ableton = Ableton(self.test_path / "test.als")
-        self.ableton.to_xml(self.test_path / "test.als", self.test_path / "test_output.xml")
+        self.ableton.to_xml(self.test_path / "test_output.xml")
         self.live_set = self.ableton.live_set
         self.midi_track = self.ableton.live_set.tracks[0]
         self.device_chain = self.ableton.live_set.tracks[0].device_chain
-        self.main_sequencer = self.ableton.live_set.tracks[0].device_chain.main_sequencer
+        self.main_sequencer = (
+            self
+            .ableton
+            .live_set
+            .tracks[0]
+            .device_chain.main_sequencer
+        )
         self.events = self.main_sequencer.clip_timeable.arranger_automation.events
 
     def test_ableton_object(self):
@@ -72,7 +78,11 @@ class TestAbleton(unittest.TestCase):
     def test_device_chain(self):
         assert self.device_chain.clip_envelope_chooser_view_state.selected_device == 0
         assert self.device_chain.clip_envelope_chooser_view_state.selected_envelope == 0
-        assert self.device_chain.clip_envelope_chooser_view_state.prefer_modulation_visible is False
+        assert (self
+                .device_chain
+                .clip_envelope_chooser_view_state
+                .prefer_modulation_visible
+                ) is False
         assert isinstance(self.device_chain.audio_input_routing, IORouting)
         assert isinstance(self.device_chain.audio_output_routing, IORouting)
         assert isinstance(self.device_chain.midi_input_routing, IORouting)
@@ -112,8 +122,8 @@ class TestAbleton(unittest.TestCase):
         assert self.events[0].notes.to_pandas() is not None
 
     def test_get_notes(self):
-        assert self.ableton.get_notes() is not None
-        self.ableton.get_notes().write_midi(self.test_path / "test.midi")
+        assert self.ableton.to_muspy() is not None
+        self.ableton.to_muspy().write_midi(self.test_path / "test.midi")
 
     def test_to_als(self):
         return None

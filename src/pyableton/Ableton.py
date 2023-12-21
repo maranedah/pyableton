@@ -19,21 +19,26 @@ class Ableton(AbletonComponent):
     live_set: LiveSet
 
     def __init__(self, als_file: str):
+        self.als_file = als_file
         filepath = "temp.xml"
-        self.to_xml(als_file, filepath)
+        self.to_xml(filepath)
         tree = ET.parse(filepath)
         os.remove(filepath)
         root = tree.getroot()
         super().__init__(root)
 
-    def to_xml(self, als_file: str, filepath: str):
-        with gzip.open(als_file, "rb") as gzipped_file:
+    def to_xml(self, filepath: str):
+        with gzip.open(self.als_file, "rb") as gzipped_file:
             xml_content = gzipped_file.read()
         with open(filepath, "wb") as output_file:
             output_file.write(xml_content)
 
-    def get_notes(self):
-        midi_tracks = [track for track in self.live_set.tracks if isinstance(track, MidiTrack)]
+    def to_muspy(self):
+        midi_tracks = [
+            track
+            for track in self.live_set.tracks
+            if isinstance(track, MidiTrack)
+        ]
         tracks = [
             muspy.Track(
                 program=0,
@@ -59,9 +64,12 @@ class Ableton(AbletonComponent):
             )
             for midi_track in midi_tracks
         ]
-        time_signatures_automation = self.live_set.master_track.automation_envelopes.envelopes[
-            0
-        ].automation.events
+        time_signatures_automation = (
+            self.live_set.master_track
+            .automation_envelopes
+            .envelopes[0]
+            .automation.events
+        )
         midi_data = muspy.Music(
             metadata=muspy.Metadata(),
             resolution=muspy.DEFAULT_RESOLUTION,
