@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyableton"
-version = "0.0.4"
+version = "0.0.5"
 authors = []
 description = "A compact package to parse Ableton .als files"
 readme = "README.md"
@@ -16,12 +16,6 @@ classifiers = [ "Programming Language :: Python :: 3", "License :: OSI Approved 
 Homepage = "https://github.com/maranedah/pyableton"
 "Bug Tracker" = "https://github.com/maranedah/pyableton/issues"
 
-[tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt"]}
-
-[tool.setuptools.dynamic.optional-dependencies.dev]
-file = [ "requirements-dev.txt",]
-
 [tool.ruff]
 line-length = 100
 target-version = "py312"
@@ -29,3 +23,8 @@ fix = true
 unfixable = []
 select = [ "F", "E", "W", "T10", "I",]
 
+[tool.setuptools.dynamic.dependencies]
+file = [ "requirements.txt",]
+
+[tool.setuptools.dynamic.optional-dependencies.dev]
+file = [ "requirements-dev.txt",]
