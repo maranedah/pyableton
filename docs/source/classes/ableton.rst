@@ -1,4 +1,0 @@
-Ableton 
-=======
-
-.. autoclass:: pyableton.Ableton

@@ -54,11 +54,7 @@
 <li class="toctree-l2"><a class="reference internal" href="grid.html">Grid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="live_set.html">LiveSet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="midi.html">Midi</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Mixer</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pyableton.Mixer.Mixer"><code class="docutils literal notranslate"><span class="pre">Mixer</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pyableton.Mixer.Pan"><code class="docutils literal notranslate"><span class="pre">Pan</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mixer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scene.html">Scene</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sequencer.html">Sequencer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="track.html">Track</a></li>
@@ -91,101 +87,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-pyableton.Mixer">
-<span id="mixer"></span><h1>Mixer<a class="headerlink" href="#module-pyableton.Mixer" title="Link to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="pyableton.Mixer.Mixer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Mixer.</span></span><span class="sig-name descname"><span class="pre">Mixer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Mixer.Mixer" title="Link to this definition"></a></dt>
-<dd><p>Mixer Class</p>
-<p>Represents mixer information in Ableton Live.</p>
-<section id="attributes">
-<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading"></a></h2>
-<dl class="simple">
-<dt>lom_id<span class="classifier">int</span></dt><dd><p>The Level Of Manipulation (LOM) ID for the mixer.</p>
-</dd>
-<dt>lom_id_view<span class="classifier">int</span></dt><dd><p>The LOM ID for the mixer view.</p>
-</dd>
-<dt>is_expanded<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the mixer is expanded.</p>
-</dd>
-</dl>
-<p>on: On
-modulation_source_count : int</p>
-<blockquote>
-<div><p>The count of modulation sources in the mixer.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>parameters_list_wrapper<span class="classifier">int</span></dt><dd><p>Wrapper for parameters list in the mixer.</p>
-</dd>
-<dt>pointee<span class="classifier">int</span></dt><dd><p>The pointee ID for the mixer.</p>
-</dd>
-<dt>last_selected_timeable_index<span class="classifier">int</span></dt><dd><p>Index of the last selected timeable.</p>
-</dd>
-<dt>last_selected_clip_envelope_index<span class="classifier">int</span></dt><dd><p>Index of the last selected clip envelope.</p>
-</dd>
-</dl>
-<p>last_preset_ref: LastPresetRef
-locked_scripts: LockedScripts
-is_folded : bool</p>
-<blockquote>
-<div><p>Flag indicating whether the mixer is folded.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>should_show_preset_name<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the preset name should be shown.</p>
-</dd>
-<dt>user_name<span class="classifier">str</span></dt><dd><p>User-defined name for the mixer.</p>
-</dd>
-<dt>annotation<span class="classifier">str</span></dt><dd><p>Annotation information for the mixer.</p>
-</dd>
-</dl>
-<p>source_context: SourceContext
-sends: List[TrackSendHolder]
-speaker: Speaker
-solo_sink : bool</p>
-<blockquote>
-<div><p>Flag indicating whether solo sink is enabled.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>pan_mode<span class="classifier">int</span></dt><dd><p>The pan mode for the mixer.</p>
-</dd>
-<dt>pan<span class="classifier">Pan</span></dt><dd><p>Pan information for the mixer.</p>
-</dd>
-<dt>split_stereo_pan_l<span class="classifier">Pan</span></dt><dd><p>Pan information for the left channel in split stereo mode.</p>
-</dd>
-<dt>split_stereo_pan_r<span class="classifier">Pan</span></dt><dd><p>Pan information for the right channel in split stereo mode.</p>
-</dd>
-</dl>
-<p>volume: Volume
-view_state_sesstion_track_width : int</p>
-<blockquote>
-<div><p>Width of the session track in the view state.</p>
-</div></blockquote>
-<p>cross_fade_state: CrossFadeState
-sends_list_wrapper : int</p>
-<blockquote>
-<div><p>Wrapper for sends list in the mixer.</p>
-</div></blockquote>
-</section>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="pyableton.Mixer.Pan">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Mixer.</span></span><span class="sig-name descname"><span class="pre">Pan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Mixer.Pan" title="Link to this definition"></a></dt>
-<dd><p>Pan Class</p>
-<p>Represents pan information in Ableton Live.</p>
-<section id="id1">
-<h2>Attributes<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<dl class="simple">
-<dt>lom_id<span class="classifier">int</span></dt><dd><p>The Level Of Manipulation (LOM) ID for pan.</p>
-</dd>
-<dt>manual<span class="classifier">int</span></dt><dd><p>The manual pan value.</p>
-</dd>
-</dl>
-<p>midi_controller_range: MidiControllerRange
-automation_target: AutomationTarget
-modulation_target: ModulationTarget</p>
-</section>
-</dd></dl>
-
+  <section id="mixer">
+<h1>Mixer<a class="headerlink" href="#mixer" title="Link to this heading"></a></h1>
 </section>
 
 
