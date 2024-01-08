@@ -34,3 +34,13 @@ repos:
         pass_filenames: false
         always_run: true
 
+  - repo: local
+    hooks:
+      - id: sphinx-build
+        name: sphinx-build
+        stages: [commit]
+        types: [python]
+        entry: sphinx-build -b html docs/source docs/build
+        language: system
+        pass_filenames: false
+        always_run: true
