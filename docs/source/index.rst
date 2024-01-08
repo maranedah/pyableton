@@ -3,19 +3,24 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to pyableton's documentation!
+PyAbleton's documentation
 =====================================
+PyAbleton is a Python library for parsing and working with Ableton Live files (.als). 
+This library provides functionality to extract information from Ableton Live projects, making it easier to analyze, manipulate, and interact with Ableton Live sets programmatically.
+
+
+Contents 
+========
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   
+   getting_started
+   classes/index
 
 
-.. automodule:: pyableton.Ableton
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
+   
 
 
 Indices and tables

@@ -5,8 +5,9 @@ import toml
 def get_current_version():
     with open("pyproject.toml", "r") as toml_file:
         pyproject_data = toml.load(toml_file)
-        version = pyproject_data["project"]["version"]        
+        version = pyproject_data["project"]["version"]
     return version
+
 
 def save_new_version(new_version):
     with open("pyproject.toml", "r") as toml_file:
@@ -22,6 +23,7 @@ def bump_version():
 
     print(f"Version bumped from {current_version} to {new_version}")
     return new_version
+
 
 if __name__ == "__main__":
     new_version = bump_version()

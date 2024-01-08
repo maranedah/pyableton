@@ -16,7 +16,7 @@ release = "0.0.5"
 
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx_autodoc_typehints",
+    "sphinx.ext.githubpages",
 ]
 
 

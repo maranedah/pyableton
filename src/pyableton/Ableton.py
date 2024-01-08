@@ -31,15 +31,6 @@ class Ableton(AbletonComponent):
     live_set : LiveSet
         The LiveSet object representing the contents of the Ableton Live project.
 
-    Methods
-    -------
-    __init__(als_file: str)
-        Initializes an Ableton instance.
-    to_xml(filepath: str)
-        Converts the Ableton Live Set file to XML format.
-    to_muspy()
-        Converts the Ableton Live Set to MusPy format.
-
     """
 
     major_version: int
