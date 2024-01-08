@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sequencer &mdash; pyableton 0.0.5 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=282f96c0"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Track" href="track.html" />
+    <link rel="prev" title="Scene" href="scene.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyableton
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">PyAbleton Classes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ableton.html">Ableton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ableton_component.html">AbletonComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clip_timeable.html">ClipTimeable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="follow_action.html">FollowAction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grid.html">Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="live_set.html">LiveSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="midi.html">Midi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mixer.html">Mixer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scene.html">Scene</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sequencer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.Sequencer.AutomationTarget"><code class="docutils literal notranslate"><span class="pre">AutomationTarget</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.Sequencer.FreezeSequencer"><code class="docutils literal notranslate"><span class="pre">FreezeSequencer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.Sequencer.MainSequencer"><code class="docutils literal notranslate"><span class="pre">MainSequencer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.Sequencer.MidiCCOnOffThresholds"><code class="docutils literal notranslate"><span class="pre">MidiCCOnOffThresholds</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.Sequencer.On"><code class="docutils literal notranslate"><span class="pre">On</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="track.html">Track</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyableton</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">PyAbleton Classes</a></li>
+      <li class="breadcrumb-item active">Sequencer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/classes/sequencer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pyableton.Sequencer">
+<span id="sequencer"></span><h1>Sequencer<a class="headerlink" href="#module-pyableton.Sequencer" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.Sequencer.AutomationTarget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Sequencer.</span></span><span class="sig-name descname"><span class="pre">AutomationTarget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Sequencer.AutomationTarget" title="Link to this definition"></a></dt>
+<dd><p>AutomationTarget Class</p>
+<p>Represents the automation target in Ableton Live.</p>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>The unique identifier for the automation target.</p>
+</dd>
+<dt>lock_envelope<span class="classifier">int</span></dt><dd><p>Lock envelope setting for the automation target.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.Sequencer.FreezeSequencer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Sequencer.</span></span><span class="sig-name descname"><span class="pre">FreezeSequencer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Sequencer.FreezeSequencer" title="Link to this definition"></a></dt>
+<dd><p>FreezeSequencer Class</p>
+<p>Represents the freeze sequencer in Ableton Live.</p>
+<section id="id1">
+<h2>Attributes<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>lom_id<span class="classifier">int</span></dt><dd><p>The Level Of Manipulation (LOM) ID for the freeze sequencer.</p>
+</dd>
+<dt>lom_id_view<span class="classifier">int</span></dt><dd><p>The view LOM ID for the freeze sequencer.</p>
+</dd>
+<dt>is_expanded<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the freeze sequencer is expanded.</p>
+</dd>
+<dt>modulation_source_count<span class="classifier">int</span></dt><dd><p>The count of modulation sources in the freeze sequencer.</p>
+</dd>
+<dt>parameters_list_wrapper<span class="classifier">int</span></dt><dd><p>Wrapper for parameters list in the freeze sequencer.</p>
+</dd>
+<dt>last_selected_timeable_index<span class="classifier">int</span></dt><dd><p>Index of the last selected timeable in the freeze sequencer.</p>
+</dd>
+<dt>last_selected_clip_envelope_index<span class="classifier">int</span></dt><dd><p>Index of the last selected clip envelope in the freeze sequencer.</p>
+</dd>
+<dt>is_folded<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the freeze sequencer is folded.</p>
+</dd>
+<dt>should_show_preset_name<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the preset name should be shown in the freeze sequencer.</p>
+</dd>
+<dt>user_name<span class="classifier">str</span></dt><dd><p>The user-assigned name for the freeze sequencer.</p>
+</dd>
+<dt>annotation<span class="classifier">str</span></dt><dd><p>Annotation information for the freeze sequencer.</p>
+</dd>
+<dt>monitoring_enum<span class="classifier">int</span></dt><dd><p>Enumeration representing the monitoring state in the freeze sequencer.</p>
+</dd>
+<dt>pitch_view_scroll_position<span class="classifier">int</span></dt><dd><p>Scroll position for pitch view in the freeze sequencer.</p>
+</dd>
+<dt>sample_offset_modulation_scroll_position<span class="classifier">int</span></dt><dd><p>Scroll position for sample offset modulation in the freeze sequencer.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.Sequencer.MainSequencer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Sequencer.</span></span><span class="sig-name descname"><span class="pre">MainSequencer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Sequencer.MainSequencer" title="Link to this definition"></a></dt>
+<dd><p>MainSequencer Class</p>
+<p>Represents the main sequencer in Ableton Live.</p>
+<section id="id2">
+<h2>Attributes<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>lom_id<span class="classifier">int</span></dt><dd><p>The Level Of Manipulation (LOM) ID for the main sequencer.</p>
+</dd>
+<dt>lom_id_view<span class="classifier">int</span></dt><dd><p>The view LOM ID for the main sequencer.</p>
+</dd>
+<dt>is_expanded<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the main sequencer is expanded.</p>
+</dd>
+<dt>on<span class="classifier">On</span></dt><dd><p>‘On’ state settings for the main sequencer.</p>
+</dd>
+<dt>modulation_source_count<span class="classifier">int</span></dt><dd><p>The count of modulation sources in the main sequencer.</p>
+</dd>
+<dt>parameters_list_wrapper<span class="classifier">int</span></dt><dd><p>Wrapper for parameters list in the main sequencer.</p>
+</dd>
+<dt>pointee<span class="classifier">int</span></dt><dd><p>The pointee setting for the main sequencer.</p>
+</dd>
+<dt>last_selected_timeable_index<span class="classifier">int</span></dt><dd><p>Index of the last selected timeable in the main sequencer.</p>
+</dd>
+<dt>last_selected_clip_envelope_index<span class="classifier">int</span></dt><dd><p>Index of the last selected clip envelope in the main sequencer.</p>
+</dd>
+<dt>is_folded<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the main sequencer is folded.</p>
+</dd>
+<dt>should_show_preset_name<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the preset name should be shown in the main sequencer.</p>
+</dd>
+<dt>user_name<span class="classifier">str</span></dt><dd><p>The user-assigned name for the main sequencer.</p>
+</dd>
+<dt>annotation<span class="classifier">str</span></dt><dd><p>Annotation information for the main sequencer.</p>
+</dd>
+<dt>monitoring_enum<span class="classifier">int</span></dt><dd><p>Enumeration representing the monitoring state in the main sequencer.</p>
+</dd>
+<dt>clip_timeable<span class="classifier">ClipTimeable</span></dt><dd><p>Clip timeable settings for the main sequencer.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.Sequencer.MidiCCOnOffThresholds">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Sequencer.</span></span><span class="sig-name descname"><span class="pre">MidiCCOnOffThresholds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Sequencer.MidiCCOnOffThresholds" title="Link to this definition"></a></dt>
+<dd><p>MidiCCOnOffThresholds Class</p>
+<p>Represents MIDI Continuous Controller (CC) on/off thresholds.</p>
+<section id="id3">
+<h2>Attributes<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>min<span class="classifier">int</span></dt><dd><p>Minimum threshold value.</p>
+</dd>
+<dt>max<span class="classifier">int</span></dt><dd><p>Maximum threshold value.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.Sequencer.On">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Sequencer.</span></span><span class="sig-name descname"><span class="pre">On</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Sequencer.On" title="Link to this definition"></a></dt>
+<dd><p>On Class</p>
+<p>Represents the ‘On’ state in Ableton Live.</p>
+<section id="id4">
+<h2>Attributes<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>lom_id<span class="classifier">int</span></dt><dd><p>The Level Of Manipulation (LOM) ID for the ‘On’ state.</p>
+</dd>
+<dt>manual<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the state is set manually.</p>
+</dd>
+<dt>automation_target<span class="classifier">AutomationTarget</span></dt><dd><p>Automation target settings for the ‘On’ state.</p>
+</dd>
+<dt>midi_CC_on_off_thresholds<span class="classifier">MidiCCOnOffThresholds</span></dt><dd><p>MIDI CC on/off thresholds for the ‘On’ state.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scene.html" class="btn btn-neutral float-left" title="Scene" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="track.html" class="btn btn-neutral float-right" title="Track" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Mauricio Araneda.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

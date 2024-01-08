@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LiveSet &mdash; pyableton 0.0.5 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=282f96c0"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Grid" href="grid.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyableton
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">PyAbleton Classes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ableton.html">Ableton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ableton_component.html">AbletonComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clip_timeable.html">ClipTimeable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="follow_action.html">FollowAction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grid.html">Grid</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LiveSet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.AutoColorPickerForPlayerAndGroupTracks"><code class="docutils literal notranslate"><span class="pre">AutoColorPickerForPlayerAndGroupTracks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.AutoColorPickerForReturnAndMasterTracks"><code class="docutils literal notranslate"><span class="pre">AutoColorPickerForReturnAndMasterTracks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.BeatTimeHelper"><code class="docutils literal notranslate"><span class="pre">BeatTimeHelper</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.ClientSize"><code class="docutils literal notranslate"><span class="pre">ClientSize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.DetailClipKeyMidi"><code class="docutils literal notranslate"><span class="pre">DetailClipKeyMidi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.ExpressionLane"><code class="docutils literal notranslate"><span class="pre">ExpressionLane</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.GroovePool"><code class="docutils literal notranslate"><span class="pre">GroovePool</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.LinkedTrackGroups"><code class="docutils literal notranslate"><span class="pre">LinkedTrackGroups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.LiveSet"><code class="docutils literal notranslate"><span class="pre">LiveSet</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.Locator"><code class="docutils literal notranslate"><span class="pre">Locator</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.ScaleInformation"><code class="docutils literal notranslate"><span class="pre">ScaleInformation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.ScrollerPos"><code class="docutils literal notranslate"><span class="pre">ScrollerPos</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.SendPreBool"><code class="docutils literal notranslate"><span class="pre">SendPreBool</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.SequencerNavigator"><code class="docutils literal notranslate"><span class="pre">SequencerNavigator</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.SessionScrollerPos"><code class="docutils literal notranslate"><span class="pre">SessionScrollerPos</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.SignalModulations"><code class="docutils literal notranslate"><span class="pre">SignalModulations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.SongMasterValues"><code class="docutils literal notranslate"><span class="pre">SongMasterValues</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.TimeSelection"><code class="docutils literal notranslate"><span class="pre">TimeSelection</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.Transport"><code class="docutils literal notranslate"><span class="pre">Transport</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.VideoWindowRect"><code class="docutils literal notranslate"><span class="pre">VideoWindowRect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.LiveSet.ViewStates"><code class="docutils literal notranslate"><span class="pre">ViewStates</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyableton</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">PyAbleton Classes</a></li>
+      <li class="breadcrumb-item active">LiveSet</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/classes/live_set.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pyableton.LiveSet">
+<span id="liveset"></span><h1>LiveSet<a class="headerlink" href="#module-pyableton.LiveSet" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.AutoColorPickerForPlayerAndGroupTracks">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">AutoColorPickerForPlayerAndGroupTracks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.AutoColorPickerForPlayerAndGroupTracks" title="Link to this definition"></a></dt>
+<dd><p>AutoColorPickerForPlayerAndGroupTracks Class</p>
+<p>Represents an Auto Color Picker for player and group tracks.</p>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>next_color_index<span class="classifier">int</span></dt><dd><p>The index for the next color.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.AutoColorPickerForReturnAndMasterTracks">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">AutoColorPickerForReturnAndMasterTracks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.AutoColorPickerForReturnAndMasterTracks" title="Link to this definition"></a></dt>
+<dd><p>AutoColorPickerForReturnAndMasterTracks Class</p>
+<p>Represents an Auto Color Picker for return and master tracks.</p>
+<section id="id1">
+<h2>Attributes<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>next_color_index<span class="classifier">int</span></dt><dd><p>The index for the next color.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.BeatTimeHelper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">BeatTimeHelper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.BeatTimeHelper" title="Link to this definition"></a></dt>
+<dd><p>BeatTimeHelper Class</p>
+<p>Represents a helper for beat time.</p>
+<section id="id2">
+<h2>Attributes<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>current_zoom<span class="classifier">float</span></dt><dd><p>The current zoom level.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.ClientSize">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">ClientSize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.ClientSize" title="Link to this definition"></a></dt>
+<dd><p>ClientSize Class</p>
+<p>Represents the size of a client.</p>
+<section id="id3">
+<h2>Attributes<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>x<span class="classifier">int</span></dt><dd><p>The width of the client.</p>
+</dd>
+<dt>y<span class="classifier">int</span></dt><dd><p>The height of the client.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.DetailClipKeyMidi">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">DetailClipKeyMidi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.DetailClipKeyMidi" title="Link to this definition"></a></dt>
+<dd><p>DetailClipKeyMidi Class</p>
+<p>Represents details about the clip’s key MIDI.</p>
+<section id="note">
+<h2>Note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
+<p>This class has a placeholder implementation.</p>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.ExpressionLane">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">ExpressionLane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.ExpressionLane" title="Link to this definition"></a></dt>
+<dd><p>ExpressionLane Class</p>
+<p>Represents an expression lane.</p>
+<section id="id4">
+<h2>Attributes<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>The ID of the expression lane.</p>
+</dd>
+<dt>type<span class="classifier">int</span></dt><dd><p>The type of the expression lane.</p>
+</dd>
+<dt>size<span class="classifier">int</span></dt><dd><p>The size of the expression lane.</p>
+</dd>
+<dt>is_minimized<span class="classifier">bool</span></dt><dd><p>Flag indicating if the expression lane is minimized.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.GroovePool">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">GroovePool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.GroovePool" title="Link to this definition"></a></dt>
+<dd><p>GroovePool Class</p>
+<p>Represents a Groove Pool.</p>
+<section id="id5">
+<h2>Attributes<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>lom_id<span class="classifier">int</span></dt><dd><p>The Level of Mess (LOM) ID.</p>
+</dd>
+<dt>Grooves<span class="classifier">list[None]</span></dt><dd><p>List of grooves (currently set as None).</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.LinkedTrackGroups">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">LinkedTrackGroups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.LinkedTrackGroups" title="Link to this definition"></a></dt>
+<dd><p>LinkedTrackGroups Class</p>
+<p>Represents linked track groups.</p>
+<section id="id6">
+<h2>Note<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>This class has a placeholder implementation.</p>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.LiveSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">LiveSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.LiveSet" title="Link to this definition"></a></dt>
+<dd><p>LiveSet Class</p>
+<p>Represents an Ableton Live set.</p>
+<section id="id7">
+<h2>Attributes<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>next_pointee_id<span class="classifier">int</span></dt><dd><p>The next pointee identifier in the Ableton Live set.</p>
+</dd>
+<dt>overwrite_protection_number<span class="classifier">int</span></dt><dd><p>The overwrite protection number for the Ableton Live set.</p>
+</dd>
+<dt>lom_id<span class="classifier">int</span></dt><dd><p>The Level of Mess (LOM) ID associated with the Ableton Live set.</p>
+</dd>
+<dt>lom_id_view<span class="classifier">int</span></dt><dd><p>The LOM ID view of the Ableton Live set.</p>
+</dd>
+<dt>tracks<span class="classifier">list[Track]</span></dt><dd><p>List of tracks in the Ableton Live set.</p>
+</dd>
+<dt>master_track<span class="classifier">MasterTrack</span></dt><dd><p>The master track in the Ableton Live set.</p>
+</dd>
+<dt>pre_hear_track<span class="classifier">PreHearTrack</span></dt><dd><p>The pre-hear track in the Ableton Live set.</p>
+</dd>
+<dt>sends_pre<span class="classifier">list[SendPreBool]</span></dt><dd><p>List of pre-send boolean values in the Ableton Live set.</p>
+</dd>
+<dt>scenes<span class="classifier">list[Scene]</span></dt><dd><p>List of scenes in the Ableton Live set.</p>
+</dd>
+<dt>transport<span class="classifier">Transport</span></dt><dd><p>The transport settings in the Ableton Live set.</p>
+</dd>
+<dt>song_master_values<span class="classifier">SongMasterValues</span></dt><dd><p>The song master values in the Ableton Live set.</p>
+</dd>
+<dt>signal_modulations<span class="classifier">SignalModulations</span></dt><dd><p>The signal modulations in the Ableton Live set.</p>
+</dd>
+<dt>global_quantisation<span class="classifier">int</span></dt><dd><p>The global quantization setting in the Ableton Live set.</p>
+</dd>
+<dt>auto_quantisation<span class="classifier">int</span></dt><dd><p>The auto quantization setting in the Ableton Live set.</p>
+</dd>
+<dt>grid<span class="classifier">Grid</span></dt><dd><p>The grid settings in the Ableton Live set.</p>
+</dd>
+<dt>scale_information<span class="classifier">ScaleInformation</span></dt><dd><p>The scale information in the Ableton Live set.</p>
+</dd>
+<dt>in_key<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the Ableton Live set is in key.</p>
+</dd>
+<dt>smpte_format<span class="classifier">int</span></dt><dd><p>The SMPTE format setting in the Ableton Live set.</p>
+</dd>
+<dt>time_selection<span class="classifier">TimeSelection</span></dt><dd><p>The time selection settings in the Ableton Live set.</p>
+</dd>
+<dt>sequencer_navigator<span class="classifier">SequencerNavigator</span></dt><dd><p>The sequencer navigator settings in the Ableton Live set.</p>
+</dd>
+<dt>is_content_splitter_open<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the content splitter is open in the Ableton Live set.</p>
+</dd>
+<dt>is_expression_splitter_open<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the expression splitter is open in the Ableton Live set.</p>
+</dd>
+<dt>expression_lanes<span class="classifier">list[ExpressionLane]</span></dt><dd><p>List of expression lanes in the Ableton Live set.</p>
+</dd>
+<dt>content_lanes<span class="classifier">list[ExpressionLane]</span></dt><dd><p>List of content lanes in the Ableton Live set.</p>
+</dd>
+<dt>view_state_fx_slot_count<span class="classifier">int</span></dt><dd><p>The view state FX slot count in the Ableton Live set.</p>
+</dd>
+<dt>view_state_session_mixer_height<span class="classifier">int</span></dt><dd><p>The view state session mixer height in the Ableton Live set.</p>
+</dd>
+<dt>locators<span class="classifier">list[Locator]</span></dt><dd><p>List of locators in the Ableton Live set.</p>
+</dd>
+<dt>detail_clip_key_midis<span class="classifier">list[DetailClipKeyMidi]</span></dt><dd><p>List of detail clip key MIDI events in the Ableton Live set.</p>
+</dd>
+<dt>tracks_list_wrapper<span class="classifier">TracksListWrapper</span></dt><dd><p>The tracks list wrapper in the Ableton Live set.</p>
+</dd>
+<dt>visible_tracks_list_wrapper<span class="classifier">VisibleTracksListWrapper</span></dt><dd><p>The visible tracks list wrapper in the Ableton Live set.</p>
+</dd>
+<dt>return_tracks_list_wrapper<span class="classifier">int</span></dt><dd><p>The return tracks list wrapper in the Ableton Live set.</p>
+</dd>
+<dt>scenes_list_wrapper<span class="classifier">ScenesListWrapper</span></dt><dd><p>The scenes list wrapper in the Ableton Live set.</p>
+</dd>
+<dt>cue_points_list_wrapper<span class="classifier">int</span></dt><dd><p>The cue points list wrapper in the Ableton Live set.</p>
+</dd>
+<dt>chooser_bar<span class="classifier">int</span></dt><dd><p>The chooser bar setting in the Ableton Live set.</p>
+</dd>
+<dt>annotation<span class="classifier">str</span></dt><dd><p>The annotation of the Ableton Live set.</p>
+</dd>
+<dt>solo_or_pfl_saved_value<span class="classifier">bool</span></dt><dd><p>Flag indicating the solo or pre-fader listen saved value in the Ableton Live set.</p>
+</dd>
+<dt>solo_in_place<span class="classifier">bool</span></dt><dd><p>Flag indicating whether solo in place is enabled in the Ableton Live set.</p>
+</dd>
+<dt>crossfade_curve<span class="classifier">int</span></dt><dd><p>The crossfade curve setting in the Ableton Live set.</p>
+</dd>
+<dt>latency_compensation<span class="classifier">int</span></dt><dd><p>The latency compensation setting in the Ableton Live set.</p>
+</dd>
+<dt>highlighted_track_index<span class="classifier">int</span></dt><dd><p>The index of the highlighted track in the Ableton Live set.</p>
+</dd>
+<dt>groove_pool<span class="classifier">GroovePool</span></dt><dd><p>The groove pool settings in the Ableton Live set.</p>
+</dd>
+<dt>automation_mode<span class="classifier">bool</span></dt><dd><p>Flag indicating whether automation mode is enabled in the Ableton Live set.</p>
+</dd>
+<dt>snap_automation_to_grid<span class="classifier">bool</span></dt><dd><p>Flag indicating whether to snap automation to the grid in the Ableton Live set.</p>
+</dd>
+<dt>arrangement_overdub<span class="classifier">bool</span></dt><dd><p>Flag indicating whether arrangement overdub is enabled in the Ableton Live set.</p>
+</dd>
+<dt>color_sequence_index<span class="classifier">int</span></dt><dd><p>The color sequence index in the Ableton Live set.</p>
+</dd>
+<dt>auto_color_picker_for_player_and_group_tracks<span class="classifier">AutoColorPickerForPlayerAndGroupTracks</span></dt><dd><p>The auto color picker settings for player and group tracks in the Ableton Live set.</p>
+</dd>
+<dt>auto_color_picker_for_return_and_master_tracks<span class="classifier">AutoColorPickerForReturnAndMasterTracks</span></dt><dd><p>The auto color picker settings for return and master tracks in the Ableton Live set.</p>
+</dd>
+<dt>view_data<span class="classifier">dict</span></dt><dd><p>The view data in the Ableton Live set.</p>
+</dd>
+<dt>reset_nonautomated_midi_controllers_on_clip_starts<span class="classifier">bool</span></dt><dd><p>Flag indicating whether to reset non-automated MIDI controllers on clip starts
+in the Ableton Live set.</p>
+</dd>
+<dt>midi_fold_in<span class="classifier">bool</span></dt><dd><p>Flag indicating whether MIDI fold-in is enabled in the Ableton Live set.</p>
+</dd>
+<dt>midi_fold_mode<span class="classifier">bool</span></dt><dd><p>Flag indicating the MIDI fold mode setting in the Ableton Live set.</p>
+</dd>
+<dt>multi_clip_focus_mode<span class="classifier">bool</span></dt><dd><p>Flag indicating the multi-clip focus mode setting in the Ableton Live set.</p>
+</dd>
+<dt>multi_clip_loop_bar_height<span class="classifier">int</span></dt><dd><p>The multi-clip loop bar height setting in the Ableton Live set.</p>
+</dd>
+<dt>midi_prelisten<span class="classifier">bool</span></dt><dd><p>Flag indicating whether MIDI prelisten is enabled in the Ableton Live set.</p>
+</dd>
+<dt>linked_track_groups<span class="classifier">LinkedTrackGroups</span></dt><dd><p>The linked track groups settings in the Ableton Live set.</p>
+</dd>
+<dt>accidental_spelling_preference<span class="classifier">int</span></dt><dd><p>The accidental spelling preference setting in the Ableton Live set.</p>
+</dd>
+<dt>prefer_flat_root_note<span class="classifier">bool</span></dt><dd><p>Flag indicating whether a flat root note is preferred in the Ableton Live set.</p>
+</dd>
+<dt>use_warper_legacy_hi_q_mode<span class="classifier">bool</span></dt><dd><p>Flag indicating whether to use the warper legacy high Q mode in the Ableton Live set.</p>
+</dd>
+<dt>video_window_rect<span class="classifier">VideoWindowRect</span></dt><dd><p>The video window rectangle settings in the Ableton Live set.</p>
+</dd>
+<dt>show_video_window<span class="classifier">bool</span></dt><dd><p>Flag indicating whether to show the video window in the Ableton Live set.</p>
+</dd>
+<dt>track_header_width<span class="classifier">int</span></dt><dd><p>The track header width setting in the Ableton Live set.</p>
+</dd>
+<dt>view_state_arranger_has_detail<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the arranger has detail in the Ableton Live set.</p>
+</dd>
+<dt>view_state_session_has_detail<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the session view has detail in the Ableton Live set.</p>
+</dd>
+<dt>view_state_detail_is_sample<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the detail is a sample in the Ableton Live set.</p>
+</dd>
+<dt>view_states<span class="classifier">ViewStates</span></dt><dd><p>The view states settings in the Ableton Live set.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.Locator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">Locator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.Locator" title="Link to this definition"></a></dt>
+<dd><p>Locator Class</p>
+<p>Represents a locator.</p>
+<section id="id8">
+<h2>Note<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>This class has a placeholder implementation.</p>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.ScaleInformation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">ScaleInformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.ScaleInformation" title="Link to this definition"></a></dt>
+<dd><p>ScaleInformation Class</p>
+<p>Represents information about the scale.</p>
+<section id="id9">
+<h2>Attributes<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>root_note<span class="classifier">int</span></dt><dd><p>The root note of the scale.</p>
+</dd>
+<dt>name<span class="classifier">str</span></dt><dd><p>The name of the scale.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.ScrollerPos">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">ScrollerPos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.ScrollerPos" title="Link to this definition"></a></dt>
+<dd><p>ScrollerPos Class</p>
+<p>Represents the position of a scroller.</p>
+<section id="id10">
+<h2>Attributes<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>x<span class="classifier">int</span></dt><dd><p>The X-coordinate of the scroller position.</p>
+</dd>
+<dt>y<span class="classifier">int</span></dt><dd><p>The Y-coordinate of the scroller position.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.SendPreBool">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">SendPreBool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.SendPreBool" title="Link to this definition"></a></dt>
+<dd><p>SendPreBool Class</p>
+<p>Represents a send with a boolean value.</p>
+<section id="id11">
+<h2>Attributes<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>The ID of the send.</p>
+</dd>
+<dt>value<span class="classifier">bool</span></dt><dd><p>The boolean value of the send.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.SequencerNavigator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">SequencerNavigator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.SequencerNavigator" title="Link to this definition"></a></dt>
+<dd><p>SequencerNavigator Class</p>
+<p>Represents a sequencer navigator.</p>
+<section id="id12">
+<h2>Attributes<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>beat_time_helper<span class="classifier">BeatTimeHelper</span></dt><dd><p>The beat time helper.</p>
+</dd>
+<dt>scroller_pos<span class="classifier">ScrollerPos</span></dt><dd><p>The scroller position.</p>
+</dd>
+<dt>client_size<span class="classifier">ClientSize</span></dt><dd><p>The client size.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.SessionScrollerPos">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">SessionScrollerPos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.SessionScrollerPos" title="Link to this definition"></a></dt>
+<dd><p>SessionScrollerPos Class</p>
+<p>Represents the position of a scroller in a session.</p>
+<section id="id13">
+<h2>Attributes<a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>x<span class="classifier">int</span></dt><dd><p>The X-coordinate of the scroller position.</p>
+</dd>
+<dt>y<span class="classifier">int</span></dt><dd><p>The Y-coordinate of the scroller position.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.SignalModulations">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">SignalModulations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.SignalModulations" title="Link to this definition"></a></dt>
+<dd><p>SignalModulations Class</p>
+<p>Represents signal modulations.</p>
+<section id="id14">
+<h2>Note<a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
+<p>This class has a placeholder implementation.</p>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.SongMasterValues">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">SongMasterValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.SongMasterValues" title="Link to this definition"></a></dt>
+<dd><p>SongMasterValues Class</p>
+<p>Represents master values for a song.</p>
+<section id="id15">
+<h2>Attributes<a class="headerlink" href="#id15" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>session_scroller_pos<span class="classifier">SessionScrollerPos</span></dt><dd><p>The session scroller position.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.TimeSelection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">TimeSelection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.TimeSelection" title="Link to this definition"></a></dt>
+<dd><p>TimeSelection Class</p>
+<p>Represents the time selection.</p>
+<section id="id16">
+<h2>Attributes<a class="headerlink" href="#id16" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>anchor_time<span class="classifier">int</span></dt><dd><p>The anchor time of the selection.</p>
+</dd>
+<dt>other_time<span class="classifier">int</span></dt><dd><p>The other time of the selection.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.Transport">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">Transport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.Transport" title="Link to this definition"></a></dt>
+<dd><p>Transport Class</p>
+<p>Represents the transport controls.</p>
+<section id="id17">
+<h2>Attributes<a class="headerlink" href="#id17" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>phase_nudge_tempo<span class="classifier">int</span></dt><dd><p>The phase nudge tempo.</p>
+</dd>
+<dt>loop_on<span class="classifier">bool</span></dt><dd><p>Flag indicating if looping is enabled.</p>
+</dd>
+<dt>loop_start<span class="classifier">int</span></dt><dd><p>The start time of the loop.</p>
+</dd>
+<dt>loop_length<span class="classifier">int</span></dt><dd><p>The length of the loop.</p>
+</dd>
+<dt>loop_is_song_start<span class="classifier">bool</span></dt><dd><p>Flag indicating if the loop starts at the beginning of the song.</p>
+</dd>
+<dt>current_time<span class="classifier">int</span></dt><dd><p>The current time position.</p>
+</dd>
+<dt>punch_in<span class="classifier">bool</span></dt><dd><p>Flag indicating if punch-in is enabled.</p>
+</dd>
+<dt>punch_out<span class="classifier">bool</span></dt><dd><p>Flag indicating if punch-out is enabled.</p>
+</dd>
+<dt>metronome_tick_duration<span class="classifier">int</span></dt><dd><p>The duration of the metronome tick.</p>
+</dd>
+<dt>draw_mode<span class="classifier">bool</span></dt><dd><p>Flag indicating if draw mode is enabled.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.VideoWindowRect">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">VideoWindowRect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.VideoWindowRect" title="Link to this definition"></a></dt>
+<dd><p>VideoWindowRect Class</p>
+<p>Represents the rectangle of a video window.</p>
+<section id="id18">
+<h2>Attributes<a class="headerlink" href="#id18" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>top<span class="classifier">int</span></dt><dd><p>The top coordinate of the rectangle.</p>
+</dd>
+<dt>left<span class="classifier">int</span></dt><dd><p>The left coordinate of the rectangle.</p>
+</dd>
+<dt>bottom<span class="classifier">int</span></dt><dd><p>The bottom coordinate of the rectangle.</p>
+</dd>
+<dt>right<span class="classifier">int</span></dt><dd><p>The right coordinate of the rectangle.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.LiveSet.ViewStates">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.LiveSet.</span></span><span class="sig-name descname"><span class="pre">ViewStates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.LiveSet.ViewStates" title="Link to this definition"></a></dt>
+<dd><p>ViewStates Class</p>
+<p>Represents view states.</p>
+<section id="id19">
+<h2>Attributes<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>session_IO<span class="classifier">int</span></dt><dd><p>Session I/O view state.</p>
+</dd>
+<dt>session_sends<span class="classifier">int</span></dt><dd><p>Session sends view state.</p>
+</dd>
+<dt>session_returns<span class="classifier">int</span></dt><dd><p>Session returns view state.</p>
+</dd>
+<dt>session_mixer<span class="classifier">int</span></dt><dd><p>Session mixer view state.</p>
+</dd>
+<dt>session_track_delay<span class="classifier">int</span></dt><dd><p>Session track delay view state.</p>
+</dd>
+<dt>session_cross_fade<span class="classifier">int</span></dt><dd><p>Session cross-fade view state.</p>
+</dd>
+<dt>session_show_over_view<span class="classifier">int</span></dt><dd><p>Session show overview view state.</p>
+</dd>
+<dt>arranger_IO<span class="classifier">int</span></dt><dd><p>Arranger I/O view state.</p>
+</dd>
+<dt>arranger_returns<span class="classifier">int</span></dt><dd><p>Arranger returns view state.</p>
+</dd>
+<dt>arranger_mixer<span class="classifier">int</span></dt><dd><p>Arranger mixer view state.</p>
+</dd>
+<dt>arranger_track_delay<span class="classifier">int</span></dt><dd><p>Arranger track delay view state.</p>
+</dd>
+<dt>arranger_show_over_view<span class="classifier">int</span></dt><dd><p>Arranger show overview view state.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="grid.html" class="btn btn-neutral float-left" title="Grid" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Mauricio Araneda.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

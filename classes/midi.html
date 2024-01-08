@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Midi &mdash; pyableton 0.0.5 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=282f96c0"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Mixer" href="mixer.html" />
+    <link rel="prev" title="LiveSet" href="live_set.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyableton
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">PyAbleton Classes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ableton.html">Ableton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ableton_component.html">AbletonComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clip_timeable.html">ClipTimeable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="follow_action.html">FollowAction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grid.html">Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="live_set.html">LiveSet</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Midi</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.Midi.AutomationLane"><code class="docutils literal notranslate"><span class="pre">AutomationLane</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.Midi.ClipEnvelopeChooserViewState"><code class="docutils literal notranslate"><span class="pre">ClipEnvelopeChooserViewState</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.Midi.DeviceChain"><code class="docutils literal notranslate"><span class="pre">DeviceChain</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.Midi.IORouting"><code class="docutils literal notranslate"><span class="pre">IORouting</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.Midi.MidiName"><code class="docutils literal notranslate"><span class="pre">MidiName</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyableton.Midi.MpeSettings"><code class="docutils literal notranslate"><span class="pre">MpeSettings</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mixer.html">Mixer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scene.html">Scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequencer.html">Sequencer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="track.html">Track</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyableton</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">PyAbleton Classes</a></li>
+      <li class="breadcrumb-item active">Midi</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/classes/midi.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pyableton.Midi">
+<span id="midi"></span><h1>Midi<a class="headerlink" href="#module-pyableton.Midi" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.Midi.AutomationLane">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Midi.</span></span><span class="sig-name descname"><span class="pre">AutomationLane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Midi.AutomationLane" title="Link to this definition"></a></dt>
+<dd><p>AutomationLane Class</p>
+<p>Represents an automation lane in Ableton Live.</p>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>selected_device<span class="classifier">int</span></dt><dd><p>The selected device for the automation lane.</p>
+</dd>
+<dt>selected_envelope<span class="classifier">int</span></dt><dd><p>The selected envelope for the automation lane.</p>
+</dd>
+<dt>is_content_selected_in_document<span class="classifier">bool</span></dt><dd><p>Flag indicating whether content is selected in the document.</p>
+</dd>
+<dt>lane_height<span class="classifier">int</span></dt><dd><p>The height of the automation lane.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.Midi.ClipEnvelopeChooserViewState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Midi.</span></span><span class="sig-name descname"><span class="pre">ClipEnvelopeChooserViewState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Midi.ClipEnvelopeChooserViewState" title="Link to this definition"></a></dt>
+<dd><p>ClipEnvelopeChooserViewState Class</p>
+<p>Represents the view state of the clip envelope chooser in Ableton Live.</p>
+<section id="id1">
+<h2>Attributes<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>selected_device<span class="classifier">int</span></dt><dd><p>The selected device for the clip envelope chooser.</p>
+</dd>
+<dt>selected_envelope<span class="classifier">int</span></dt><dd><p>The selected envelope for the clip envelope chooser.</p>
+</dd>
+<dt>prefer_modulation_visible<span class="classifier">bool</span></dt><dd><p>Flag indicating whether modulation visibility is preferred.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.Midi.DeviceChain">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Midi.</span></span><span class="sig-name descname"><span class="pre">DeviceChain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Midi.DeviceChain" title="Link to this definition"></a></dt>
+<dd><p>DeviceChain Class</p>
+<p>Represents a device chain in Ableton Live.</p>
+<section id="id2">
+<h2>Attributes<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>clip_envelope_chooser_view_state<span class="classifier">ClipEnvelopeChooserViewState</span></dt><dd><p>View state of the clip envelope chooser.</p>
+</dd>
+<dt>audio_input_routing<span class="classifier">IORouting</span></dt><dd><p>Audio input routing information.</p>
+</dd>
+<dt>midi_input_routing<span class="classifier">IORouting</span></dt><dd><p>MIDI input routing information.</p>
+</dd>
+<dt>audio_output_routing<span class="classifier">IORouting</span></dt><dd><p>Audio output routing information.</p>
+</dd>
+<dt>midi_output_routing<span class="classifier">IORouting</span></dt><dd><p>MIDI output routing information.</p>
+</dd>
+<dt>mixer<span class="classifier">Mixer</span></dt><dd><p>Mixer information.</p>
+</dd>
+<dt>main_sequencer<span class="classifier">MainSequencer</span></dt><dd><p>Main sequencer information.</p>
+</dd>
+<dt>freeze_sequencer<span class="classifier">FreezeSequencer</span></dt><dd><p>Freeze sequencer information.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.Midi.IORouting">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Midi.</span></span><span class="sig-name descname"><span class="pre">IORouting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Midi.IORouting" title="Link to this definition"></a></dt>
+<dd><p>IORouting Class</p>
+<p>Represents input/output routing information in Ableton Live.</p>
+<section id="id3">
+<h2>Attributes<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>target<span class="classifier">str</span></dt><dd><p>The routing target.</p>
+</dd>
+<dt>upper_display_string<span class="classifier">str</span></dt><dd><p>The upper display string.</p>
+</dd>
+<dt>lower_display_string<span class="classifier">str</span></dt><dd><p>The lower display string.</p>
+</dd>
+<dt>mpe_settings<span class="classifier">MpeSettings</span></dt><dd><p>MPE settings associated with the routing.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.Midi.MidiName">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Midi.</span></span><span class="sig-name descname"><span class="pre">MidiName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Midi.MidiName" title="Link to this definition"></a></dt>
+<dd><p>MidiName Class</p>
+<p>Represents MIDI name information in Ableton Live.</p>
+<section id="id4">
+<h2>Attributes<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>effective_name<span class="classifier">str</span></dt><dd><p>The effective name for MIDI in Ableton Live.</p>
+</dd>
+<dt>user_name<span class="classifier">str</span></dt><dd><p>The user-defined name for MIDI in Ableton Live.</p>
+</dd>
+<dt>annotation<span class="classifier">str</span></dt><dd><p>Annotation information for MIDI in Ableton Live.</p>
+</dd>
+<dt>memorized_first_clip_name<span class="classifier">str</span></dt><dd><p>The memorized first clip name for MIDI in Ableton Live.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyableton.Midi.MpeSettings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyableton.Midi.</span></span><span class="sig-name descname"><span class="pre">MpeSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyableton.Midi.MpeSettings" title="Link to this definition"></a></dt>
+<dd><p>MpeSettings Class</p>
+<p>Represents MPE (MIDI Polyphonic Expression) settings in Ableton Live.</p>
+<section id="id5">
+<h2>Attributes<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>zone_type<span class="classifier">int</span></dt><dd><p>The type of MPE zone.</p>
+</dd>
+<dt>first_note_channel<span class="classifier">int</span></dt><dd><p>The first MIDI note channel.</p>
+</dd>
+<dt>last_note_channel<span class="classifier">int</span></dt><dd><p>The last MIDI note channel.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="live_set.html" class="btn btn-neutral float-left" title="LiveSet" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mixer.html" class="btn btn-neutral float-right" title="Mixer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Mauricio Araneda.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
