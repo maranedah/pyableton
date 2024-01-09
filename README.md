@@ -28,10 +28,7 @@ from pyableton import Ableton
 ableton_data = Ableton("path/to/your/project.als")
 
 # Get midi information
-midi_data = ableton_data.to_muspy()
-
-# Store midi as file
-midi_data = midi_data.write_midi("output_file.midi")
+midi_data = ableton_data.to_midi("output_file.midi")
 
 ```
 
