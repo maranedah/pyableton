@@ -7,7 +7,6 @@ on:
 
 
 permissions:
-  contents: read
   pages: write      # to deploy to Pages
   id-token: write   # to verify the deployment originates from an appropriate source
 
@@ -34,11 +33,13 @@ jobs:
     
     - name: Setup Pages
       uses: actions/configure-pages@v4
+
     - name: Build with Jekyll
       uses: actions/jekyll-build-pages@v1
       with:
         source: ./docs/build
         destination: ./_site
+        
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
 
