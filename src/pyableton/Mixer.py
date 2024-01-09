@@ -13,9 +13,6 @@ class Pan(AbletonComponent):
         The Level Of Manipulation (LOM) ID for pan.
     manual : int
         The manual pan value.
-    midi_controller_range: MidiControllerRange
-    automation_target: AutomationTarget
-    modulation_target: ModulationTarget
 
     """
 
@@ -40,7 +37,6 @@ class Mixer(AbletonComponent):
         The LOM ID for the mixer view.
     is_expanded : bool
         Flag indicating whether the mixer is expanded.
-    on: On
     modulation_source_count : int
         The count of modulation sources in the mixer.
     parameters_list_wrapper : int
@@ -51,8 +47,6 @@ class Mixer(AbletonComponent):
         Index of the last selected timeable.
     last_selected_clip_envelope_index : int
         Index of the last selected clip envelope.
-    last_preset_ref: LastPresetRef
-    locked_scripts: LockedScripts
     is_folded : bool
         Flag indicating whether the mixer is folded.
     should_show_preset_name : bool
@@ -61,9 +55,6 @@ class Mixer(AbletonComponent):
         User-defined name for the mixer.
     annotation : str
         Annotation information for the mixer.
-    source_context: SourceContext
-    sends: List[TrackSendHolder]
-    speaker: Speaker
     solo_sink : bool
         Flag indicating whether solo sink is enabled.
     pan_mode : int
@@ -74,7 +65,6 @@ class Mixer(AbletonComponent):
         Pan information for the left channel in split stereo mode.
     split_stereo_pan_r : Pan
         Pan information for the right channel in split stereo mode.
-    volume: Volume
     view_state_sesstion_track_width : int
         Width of the session track in the view state.
     cross_fade_state: CrossFadeState

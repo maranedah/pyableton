@@ -1,16 +1,20 @@
+import pathlib
+
 import semver
 import toml
 
+PYPROJECT_PATH = pathlib.Path(__file__).parent / "pyproject.toml"
+
 
 def get_current_version():
-    with open("pyproject.toml", "r") as toml_file:
+    with open(PYPROJECT_PATH, "r") as toml_file:
         pyproject_data = toml.load(toml_file)
         version = pyproject_data["project"]["version"]
     return version
 
 
 def save_new_version(new_version):
-    with open("pyproject.toml", "r") as toml_file:
+    with open(PYPROJECT_PATH, "r") as toml_file:
         pyproject_data = toml.load(toml_file)
         pyproject_data["project"]["version"] = new_version
     toml.dump(pyproject_data, open("pyproject.toml", "w"))
