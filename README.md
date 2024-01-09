@@ -27,12 +27,12 @@ from pyableton import Ableton
 # Initialize the parser with the path to your Ableton Live file
 ableton_data = Ableton("path/to/your/project.als")
 
-# Get midi information
-midi_data = ableton_data.to_midi("output_file.midi")
+# Save Ableton data as midi file
+ableton_data.to_midi("output_file.midi")
 
 ```
 
-For detailed usage instructions and API documentation, please refer to the documentation (WIP).
+For detailed usage instructions and API documentation, please refer to the [documentation](https://maranedah.github.io/pyableton/) (WIP).
 
 ## Contributing
 
