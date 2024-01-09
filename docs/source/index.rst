@@ -17,15 +17,3 @@ Contents
    
    getting_started
    classes/index
-
-
-
-   
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
