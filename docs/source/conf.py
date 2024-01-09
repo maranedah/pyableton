@@ -6,14 +6,12 @@
 import os
 import sys
 
-import sphinx_rtd_theme  # noqa
-
 sys.path.insert(0, os.path.abspath((os.path.join("..", ".."))))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "pyableton"
+project = "PyAbleton"
 copyright = "2024, Mauricio Araneda"
 author = "Mauricio Araneda"
 release = "0.0.5"
@@ -23,6 +21,7 @@ release = "0.0.5"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    "sphinx_rtd_theme",
     "sphinx.ext.autodoc",
     "sphinx.ext.githubpages",
 ]
