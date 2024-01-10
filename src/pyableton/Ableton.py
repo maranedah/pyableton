@@ -133,3 +133,6 @@ class Ableton(AbletonComponent):
             tracks=tracks,
         )
         return midi_data
+
+    def to_midi(self, filepath: str):
+        self.to_muspy().write_midi(filepath)

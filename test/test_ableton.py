@@ -115,7 +115,9 @@ class TestAbleton(unittest.TestCase):
 
     def test_get_notes(self):
         assert self.ableton.to_muspy() is not None
-        self.ableton.to_muspy().write_midi(self.test_path / "test.midi")
+
+    def test_to_midi(self):
+        self.ableton.to_midi("test.mid")
 
     def test_to_als(self):
         return None
