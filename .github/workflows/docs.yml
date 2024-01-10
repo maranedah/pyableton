@@ -1,9 +1,10 @@
 name: Build and Deploy Docs
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Publish to PyPI"]
+    types:
+      - completed
 
 permissions:
   pages: write      # to deploy to Pages
