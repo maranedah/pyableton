@@ -15,10 +15,10 @@ Fixes #ISSUE_NUMBER
 <!-- Enumerate the key changes made in this pull request. -->
 
 New Features:
-- 
+*
 
 Fixes:
--
+*
 
 ## Testing
 
