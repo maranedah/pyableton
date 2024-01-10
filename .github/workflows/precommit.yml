@@ -1,4 +1,4 @@
-name: Run Pytest
+name: Run Precommit
 
 on:
   workflow_run:
@@ -10,6 +10,6 @@ jobs:
   pytest:
     runs-on: ubuntu-latest
     steps:
-      - name: Pytest
+      - name: Pre-commit
         run: |
-          pytest --cov-fail-under=80
+          pre-commit run --all
