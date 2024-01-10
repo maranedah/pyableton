@@ -1,4 +1,4 @@
-name: Run Pytest and Precommit
+name: Run Pytest
 
 on:
   push:
@@ -6,8 +6,9 @@ on:
       - dev
 
 jobs:
-  setup:
+  pytest:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -24,18 +25,6 @@ jobs:
           pip install -r requirements-dev.txt
           pip install .
 
-  pytest:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
       - name: Pytest
         run: |
           pytest --cov-fail-under=80
-
-  precommit:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Pre-commit
-        run: |
-          pre-commit run --all
