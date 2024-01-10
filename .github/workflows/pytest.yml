@@ -26,6 +26,7 @@ jobs:
 
   pytest:
     runs-on: ubuntu-latest
+    needs: setup
     steps:
       - name: Pytest
         run: |
@@ -33,6 +34,7 @@ jobs:
 
   precommit:
     runs-on: ubuntu-latest
+    needs: setup
     steps:
       - name: Pre-commit
         run: |
