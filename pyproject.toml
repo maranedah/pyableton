@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyableton"
-version = "0.0.9"
+version = "0.0.12"
 authors = []
 description = "A compact package to parse Ableton .als files"
 readme = "README.md"
