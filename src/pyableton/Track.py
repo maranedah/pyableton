@@ -25,6 +25,8 @@ class Track(AbletonComponent):
         if cls is Track:
             if track_node.tag == "MidiTrack":
                 return MidiTrack(track_node)
+            elif track_node.tag == "AudioTrack":
+                return AudioTrack(track_node)
             elif track_node.tag == "ReturnTrack":
                 return ReturnTrack(track_node)
             else:
@@ -134,6 +136,32 @@ class MidiTrack(Track):
     device_chain: DeviceChain
     re_wire_slave_midi_target_id: int
     pitchbend_range: int
+
+
+class AudioTrack(Track):
+    id: int
+    lom_id: int
+    lom_id_view: int
+    is_content_selected_in_document: bool
+    preferred_content_view_mode: int
+    track_delay: TrackDelay
+    # name:
+    color: int
+    # automation_envelopes: AutomationEnvelopes
+    track_group_id: int
+    track_unfolded: bool
+    devices_list_wrapper: int
+    clip_slots_list_wrapper: int
+    view_data: dict
+    # take_lanes:
+    linked_track_group_id: int
+    saved_playing_slot: int
+    saved_playing_offset: int
+    freeze: bool
+    velocity_detail: int
+    need_arranger_refreeze: bool
+    post_process_freeze_clips: int
+    # device_chain: DeviceChain
 
 
 class ReturnTrack(Track):
