@@ -11,13 +11,13 @@ class Pan(AbletonComponent):
     ----------
     lom_id : int
         The Level Of Manipulation (LOM) ID for pan.
-    manual : int
+    manual : float
         The manual pan value.
 
     """
 
     lom_id: int
-    manual: int
+    manual: float
     # midi_controller_range: MidiControllerRange
     # automation_target: AutomationTarget
     # modulation_target: ModulationTarget
