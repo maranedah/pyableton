@@ -354,7 +354,7 @@ class Transport(AbletonComponent):
     loop_start: int
     loop_length: int
     loop_is_song_start: bool
-    current_time: int
+    current_time: float
     punch_in: bool
     punch_out: bool
     metronome_tick_duration: int
