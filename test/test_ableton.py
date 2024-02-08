@@ -116,6 +116,32 @@ class TestAbleton(unittest.TestCase):
     def test_get_notes(self):
         assert self.ableton.to_muspy() is not None
 
+        data = self.ableton.to_muspy()
+        import pandas as pd
+
+        df = pd.DataFrame(
+            [
+                {
+                    "instrument": track.name,
+                    "track": i,
+                    # "measure": data.time_to_measure(note.time).index,
+                    "time": note.time,
+                    # "relative_position": note.time - data.time_to_measure(note.time).time,
+                    # "measure_length": data.time_to_measure(note.time).length,
+                    "duration": note.duration,
+                    "pitch": note.pitch,
+                    "velocity": note.velocity,
+                    # "tempo": int(data.time_to_measure(note.time).tempo.qpm),
+                    # "time_signature": data.time_signature_str(
+                    #    data.time_to_measure(note.time).time_signature
+                    # ),
+                }
+                for i, track in enumerate(data.tracks)
+                for note in track.notes
+            ]
+        )
+        df = df.sort_values(by=["time", "instrument"])
+
     def test_to_midi(self):
         self.ableton.to_midi("test.mid")
 
