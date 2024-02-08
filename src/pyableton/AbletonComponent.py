@@ -65,7 +65,7 @@ class AbletonComponent:
 
         node = root.find(param_name)
 
-        is_native_type = annotation_param_type in [int, str]
+        is_native_type = annotation_param_type in [int, str, float]
         is_bool = annotation_param_type == bool
         is_dict = annotation_param_type == dict
         is_list_type = hasattr(annotation_param_type, "__origin__") and issubclass(

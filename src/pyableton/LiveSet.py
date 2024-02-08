@@ -307,15 +307,15 @@ class TimeSelection(AbletonComponent):
 
     Attributes
     ----------
-    anchor_time : int
+    anchor_time : float
         The anchor time of the selection.
-    other_time : int
+    other_time : float
         The other time of the selection.
 
     """
 
-    anchor_time: int
-    other_time: int
+    anchor_time: float
+    other_time: float
 
 
 class Transport(AbletonComponent):
