@@ -97,7 +97,11 @@ class AbletonComponent:
         try:
             initialized_value = annotation_param_type(new_param_value)  # casts to python object
         except ValueError:
-            print(f"Parameter {param_name} is not type {annotation_param_type}")
+            error_message = (
+                f"Parameter {param_name} with value {new_param_value} "
+                f"is not type {annotation_param_type}"
+            )
+            print(error_message)
         return initialized_value
 
     def snake_to_camel(self, input_string):
