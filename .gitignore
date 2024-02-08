@@ -163,3 +163,7 @@ cython_debug/
 # Ruff
 .ruff_cache/
 **/*.egg-info
+
+
+*.mid 
+*.midi
