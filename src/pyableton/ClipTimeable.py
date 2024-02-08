@@ -193,7 +193,7 @@ class MidiClip(AbletonComponent):
         The LOM ID view of the MIDI clip.
     current_start : int
         The current start time of the MIDI clip.
-    current_end : int
+    current_end : float
         The current end time of the MIDI clip.
     name : str
         The name of the MIDI clip.
@@ -255,7 +255,7 @@ class MidiClip(AbletonComponent):
     lom_id: int
     lom_id_view: int
     current_start: int
-    current_end: int
+    current_end: float
     # loop: Loop
     name: str
     annotation: str
