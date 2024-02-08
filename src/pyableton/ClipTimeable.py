@@ -53,7 +53,7 @@ class MidiNoteEvent(AbletonComponent):
 
     time: float
     duration: float
-    velocity: int
+    velocity: float
     velocity_deviation: int
     off_velocity: int
     probability: float
@@ -115,7 +115,7 @@ class KeyTrack(AbletonComponent):
                 time=int(note.time * muspy.DEFAULT_RESOLUTION),
                 pitch=self.midi_key,
                 duration=int(note.duration * muspy.DEFAULT_RESOLUTION),
-                velocity=note.velocity,
+                velocity=int(round(note.velocity)),
             )
             for note in self.notes
         ]
