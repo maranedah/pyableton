@@ -1,7 +1,7 @@
 from xml.etree import ElementTree
 
 from .AbletonComponent import AbletonComponent
-from .Midi import DeviceChain, MidiName
+from .Midi import DeviceChain, GroupDeviceChain, MidiName
 
 
 class Track(AbletonComponent):
@@ -27,6 +27,8 @@ class Track(AbletonComponent):
                 return MidiTrack(track_node)
             elif track_node.tag == "AudioTrack":
                 return AudioTrack(track_node)
+            elif track_node.tag == "GroupTrack":
+                return GroupTrack(track_node)
             elif track_node.tag == "ReturnTrack":
                 return ReturnTrack(track_node)
             else:
@@ -218,6 +220,30 @@ class ReturnTrack(Track):
     # take_lanes: list[TakeLane]
     linked_track_group_id: int
     # device_chain: DeviceChain
+
+
+class GroupTrack(Track):
+    """
+    GroupTrack Class
+
+    Represents a group track in Ableton Live.
+    """
+
+    lom_id: int
+    lom_id_view: int
+    is_content_selected_in_document: bool
+    preferred_content_view_mode: int
+    track_delay: TrackDelay
+    name: MidiName
+    color: int
+    automation_envelopes: "AutomationEnvelopes"
+    track_group_id: int
+    track_unfolded: bool
+    devices_list_wrapper: int
+    clip_slots_list_wrapper: int
+    view_data: dict
+    linked_track_group_id: int
+    device_chain: GroupDeviceChain
 
 
 class TracksListWrapper(AbletonComponent):
