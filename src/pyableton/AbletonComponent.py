@@ -1,4 +1,5 @@
 import json
+from typing import get_args, get_origin, get_type_hints
 from xml.etree import ElementTree
 
 
@@ -30,7 +31,9 @@ class AbletonComponent:
         root : ElementTree.Element
             The root element of the XML representation of the Ableton component.
         """
-        for annotation_param_name, annotation_param_type in self.__annotations__.items():
+        for annotation_param_name, annotation_param_type in get_type_hints(
+            self.__class__
+        ).items():
             initialized_value = self.init_python_object_from_annotation(
                 root, annotation_param_name, annotation_param_type
             )
@@ -64,14 +67,16 @@ class AbletonComponent:
         # we look in the nodes' children
 
         node = root.find(param_name)
+        origin = get_origin(annotation_param_type)
+        annotation_args = get_args(annotation_param_type)
 
         is_native_type = annotation_param_type in [int, str, float]
         is_bool = annotation_param_type == bool
         is_dict = annotation_param_type == dict
-        is_list_type = hasattr(annotation_param_type, "__origin__") and issubclass(
-            annotation_param_type.__origin__, list
+        is_list_type = origin is list
+        is_ableton_component = isinstance(annotation_param_type, type) and issubclass(
+            annotation_param_type, AbletonComponent
         )
-        is_ableton_component = issubclass(annotation_param_type, AbletonComponent)
 
         if is_native_type:
             new_param_value = list(node.attrib.values())[0]
@@ -83,10 +88,8 @@ class AbletonComponent:
             new_param_value = json.loads(list(node.attrib.values())[0])
 
         elif is_list_type:
-            ableton_component = annotation_param_type.__args__[0]
-            new_param_value = [
-                ableton_component(node) for node in root.find(param_name).findall("./")
-            ]
+            ableton_component = annotation_args[0]
+            new_param_value = [ableton_component(child) for child in node.findall("./")]
             annotation_param_type = list
 
         elif is_ableton_component:

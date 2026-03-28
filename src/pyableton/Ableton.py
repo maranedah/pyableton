@@ -1,5 +1,4 @@
 import gzip
-import os
 import xml.etree.ElementTree as ET
 
 import muspy
@@ -50,12 +49,12 @@ class Ableton(AbletonComponent):
             The path to the Ableton Live Set file (ALS) to be loaded.
         """
         self.als_file = als_file
-        filepath = "temp.xml"
-        self.to_xml(filepath)
-        tree = ET.parse(filepath)
-        os.remove(filepath)
-        root = tree.getroot()
+        root = self._load_root()
         super().__init__(root)
+
+    def _load_root(self):
+        with gzip.open(self.als_file, "rb") as gzipped_file:
+            return ET.fromstring(gzipped_file.read())
 
     def to_xml(self, filepath: str):
         """
@@ -66,8 +65,7 @@ class Ableton(AbletonComponent):
         filepath : str
             The path to save the XML file.
         """
-        with gzip.open(self.als_file, "rb") as gzipped_file:
-            xml_content = gzipped_file.read()
+        xml_content = ET.tostring(self._load_root())
         with open(filepath, "wb") as output_file:
             output_file.write(xml_content)
 

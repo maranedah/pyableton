@@ -162,3 +162,20 @@ class DeviceChain(AbletonComponent):
     # signal_modulations: List[SignalModulation]
     # re_wire_slave_midi_target_id: ReWireSlaveMidiTargetId
     # pitchbend_range: PitchbendRange
+
+
+class GroupDeviceChain(AbletonComponent):
+    """
+    GroupDeviceChain Class
+
+    Represents a group-track device chain in Ableton Live.
+    Group tracks do not expose a MainSequencer node.
+    """
+
+    clip_envelope_chooser_view_state: ClipEnvelopeChooserViewState
+    audio_input_routing: IORouting
+    midi_input_routing: IORouting
+    audio_output_routing: IORouting
+    midi_output_routing: IORouting
+    mixer: Mixer
+    freeze_sequencer: FreezeSequencer

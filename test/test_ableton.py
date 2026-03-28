@@ -1,5 +1,7 @@
 import pathlib
 import unittest
+from unittest.mock import patch
+from xml.etree import ElementTree
 
 from pyableton.Ableton import Ableton
 from pyableton.AbletonComponent import AbletonComponent
@@ -8,7 +10,7 @@ from pyableton.LiveSet import LiveSet
 from pyableton.Midi import DeviceChain, IORouting, MidiName
 from pyableton.Mixer import Mixer
 from pyableton.Sequencer import FreezeSequencer, MainSequencer
-from pyableton.Track import MasterTrack, MidiTrack, Track, TrackDelay
+from pyableton.Track import GroupTrack, MasterTrack, MidiTrack, Track, TrackDelay
 
 
 class TestAbleton(unittest.TestCase):
@@ -153,3 +155,8 @@ class TestAbleton(unittest.TestCase):
 
     def test_midi_tracks(self):
         assert self.ableton.live_set.tracks[0] is not None
+
+    def test_group_track_factory(self):
+        with patch.object(GroupTrack, "__init__", return_value=None):
+            group_track = Track(ElementTree.fromstring("<GroupTrack />"))
+        assert isinstance(group_track, GroupTrack)
