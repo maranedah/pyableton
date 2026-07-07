@@ -577,6 +577,10 @@ class LiveSet(AbletonComponent):
 
     """
 
+    # Ableton Live 12 renamed the top-level "MasterTrack" element to "MainTrack";
+    # resolve either spelling onto the same `master_track` field.
+    _aliases = {"master_track": ["MainTrack"]}
+
     next_pointee_id: int
     overwrite_protection_number: int
     lom_id: int

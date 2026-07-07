@@ -30,7 +30,9 @@ class Track(AbletonComponent):
             elif track_node.tag == "ReturnTrack":
                 return ReturnTrack(track_node)
             else:
-                raise ValueError(f"Unknown species: {track_node}")
+                # Unknown / version-specific track kinds (e.g. GroupTrack) are skipped
+                # rather than raising, so parsing stays robust across Live versions.
+                return None
         else:
             return super().__new__(cls)
 

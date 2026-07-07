@@ -1,13 +1,11 @@
 import gzip
-import os
 import xml.etree.ElementTree as ET
 
 import muspy
 
+from . import extract
 from .AbletonComponent import AbletonComponent
-from .constants import TIME_SIGNATURE_IDS
 from .LiveSet import LiveSet
-from .Track import MidiTrack
 
 
 class Ableton(AbletonComponent):
@@ -49,13 +47,14 @@ class Ableton(AbletonComponent):
         als_file : str
             The path to the Ableton Live Set file (ALS) to be loaded.
         """
-        self.als_file = als_file
-        filepath = "temp.xml"
-        self.to_xml(filepath)
-        tree = ET.parse(filepath)
-        os.remove(filepath)
-        root = tree.getroot()
-        super().__init__(root)
+        self.als_file = str(als_file)
+        self.root = ET.fromstring(self._read_xml())
+        super().__init__(self.root)
+
+    def _read_xml(self) -> bytes:
+        """Return the decompressed (gunzipped) ALS XML content as bytes."""
+        with gzip.open(self.als_file, "rb") as gzipped_file:
+            return gzipped_file.read()
 
     def to_xml(self, filepath: str):
         """
@@ -66,73 +65,71 @@ class Ableton(AbletonComponent):
         filepath : str
             The path to save the XML file.
         """
-        with gzip.open(self.als_file, "rb") as gzipped_file:
-            xml_content = gzipped_file.read()
         with open(filepath, "wb") as output_file:
-            output_file.write(xml_content)
+            output_file.write(self._read_xml())
 
     def to_muspy(self):
         """
         Converts the Ableton Live Set to MusPy format.
+
+        Reads every MIDI track's full set of arrangement clips (not just the first),
+        and builds tempo / time-signature lists from the master track's automation
+        (falling back to the manual values). Works across Ableton Live versions.
 
         Returns
         -------
         muspy.Music
             The MusPy representation of the Ableton Live Set.
         """
-        midi_tracks = [track for track in self.live_set.tracks if isinstance(track, MidiTrack)]
-        tracks = [
-            muspy.Track(
-                program=0,
-                is_drum="drum"
-                in (
-                    midi_track.device_chain.main_sequencer.clip_timeable.arranger_automation.events[
-                        0
-                    ].name
-                ).lower(),
-                name=(
-                    midi_track.device_chain.main_sequencer.clip_timeable.arranger_automation.events[
-                        0
-                    ].name
-                ),
-                notes=(
-                    midi_track.device_chain.main_sequencer.clip_timeable.arranger_automation.events[
-                        0
-                    ].notes.get_notes()
-                ),
-                chords=[],
-                annotations=[],
-                lyrics=[],
+        resolution = muspy.DEFAULT_RESOLUTION
+        live_set = extract.find_live_set(self.root)
+
+        def to_ticks(beat):
+            return int(round(beat * resolution))
+
+        tracks = []
+        for track_element in extract.iter_midi_tracks(live_set):
+            notes = [
+                muspy.Note(
+                    time=to_ticks(beat),
+                    pitch=int(pitch),
+                    duration=max(1, to_ticks(duration)),
+                    velocity=max(0, min(127, int(round(velocity)))),
+                )
+                for beat, pitch, duration, velocity in extract.track_notes(track_element)
+            ]
+            tracks.append(
+                muspy.Track(
+                    program=0,
+                    is_drum=extract.is_drum_track(track_element),
+                    name=extract.track_name(track_element),
+                    notes=notes,
+                    chords=[],
+                    annotations=[],
+                    lyrics=[],
+                )
             )
-            for midi_track in midi_tracks
+
+        tempos = [
+            muspy.Tempo(time=to_ticks(beat), qpm=qpm)
+            for beat, qpm in extract.get_tempo_map(live_set)
         ]
-        time_signatures_automation = self.live_set.master_track.automation_envelopes.envelopes[
-            0
-        ].automation.events
-        midi_data = muspy.Music(
+        time_signatures = [
+            muspy.TimeSignature(time=to_ticks(beat), numerator=num, denominator=den)
+            for beat, num, den in extract.get_time_signature_map(live_set)
+        ]
+
+        return muspy.Music(
             metadata=muspy.Metadata(),
-            resolution=muspy.DEFAULT_RESOLUTION,
-            tempos=[
-                muspy.Tempo(
-                    time=0 * muspy.DEFAULT_RESOLUTION,
-                    qpm=self.live_set.master_track.device_chain.mixer.tempo.manual,
-                )
-            ],
+            resolution=resolution,
+            tempos=tempos or [muspy.Tempo(time=0, qpm=120.0)],
             key_signatures=[],
-            time_signatures=[
-                muspy.TimeSignature(
-                    time=max(0, time_signature_event.time * muspy.DEFAULT_RESOLUTION),
-                    numerator=TIME_SIGNATURE_IDS[time_signature_event.value]["numerator"],
-                    denominator=TIME_SIGNATURE_IDS[time_signature_event.value]["denominator"],
-                )
-                for time_signature_event in time_signatures_automation
-            ],
+            time_signatures=time_signatures,
             beats=[],
             lyrics=[],
             annotations=[],
             tracks=tracks,
         )
-        return midi_data
 
     def to_midi(self, filepath: str):
         self.to_muspy().write_midi(filepath)
